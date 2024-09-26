@@ -1,5 +1,6 @@
 using System;
 using CommunityToolkit.Maui.Markup;
+using MAUIBootstrap.Controls;
 
 namespace MAUIBootstrap.Utilities;
 
@@ -48,5 +49,31 @@ public static class UIExtensions
     {
         gesture.NumberOfTapsRequired = taps;
         return gesture;
+    }
+
+    public static VerticalStackLayout PrimaryAlert(
+        this VerticalStackLayout layout,
+        View content,
+        bool dismissable = true,
+        int timeoutMS = 0
+    )
+    {
+        var alert = new AlertControl
+        {
+            AlertContent = content,
+            Timeout = TimeSpan.FromMilliseconds(timeoutMS),
+            Dismissable = dismissable,
+            AlertType = AlertType.Primary
+        };
+        alert.CloseClicked += (s, e) => 
+        {
+            if (s is AlertControl alertControl)
+            {   
+                layout.Remove(alertControl);
+            }
+        };
+        layout.Insert(0, alert);
+
+        return layout;
     }
 }
