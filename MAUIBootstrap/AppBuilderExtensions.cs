@@ -1,7 +1,7 @@
 using System;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Markup;
+using FmgLib.MauiMarkup;
 using Microsoft.Maui.Controls.Compatibility.Hosting;
 
 namespace MAUIBootstrap;
@@ -13,7 +13,7 @@ public static class AppBuilderExtensions
         builder
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
-            .UseMauiCommunityToolkitMarkup()
+            .UseMauiMarkupLocalization()
             .UseMauiCompatibility()
             .ConfigureFonts((fonts) => 
             {

@@ -1,8 +1,7 @@
 using System.Runtime.CompilerServices;
-using CommunityToolkit.Maui.Markup;
 using MAUIBootstrap.Utilities;
 using Microsoft.Maui.Controls.Shapes;
-using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+using FmgLib.MauiMarkup;
 
 namespace MAUIBootstrap.Controls;
 
@@ -73,27 +72,26 @@ public class AlertControl : Border
 	#endregion
 
 	#region UI Definitions
-	private readonly Grid _ContentLayout = new()
-	{
-		ColumnDefinitions = Columns.Define(Star, 32),
-		ColumnSpacing = 8
-	};
+	private readonly Grid _ContentLayout = new Grid()
+		.ColumnDefinitions(defs => defs.Star().Absolute(32))
+		.ColumnSpacing(8);
 	private readonly Image _CloseIcon = new();
 	#endregion
 
 	#region Constructor
 	public AlertControl()
 	{
-		Content = _ContentLayout;	
+		this.Content(_ContentLayout);
+		_CloseIcon
+			.GestureRecognizers(new TapGestureRecognizer()
+			.Command(new Command(async () => 
+				{
+					await _CloseIcon.ScaleTo(0.95, 70);
+					await _CloseIcon.ScaleTo(1.0, 70);
 
-		_CloseIcon.TapGesture(async () => 
-		{
-			await _CloseIcon.ScaleTo(0.95, 70);
-			await _CloseIcon.ScaleTo(1.0, 70);
-
-			CloseClicked?.Invoke(this, EventArgs.Empty);
-		});
-
+					CloseClicked?.Invoke(this, EventArgs.Empty);
+				})
+			));
 		ApplyAlertTypeStyle();
 	}
     #endregion

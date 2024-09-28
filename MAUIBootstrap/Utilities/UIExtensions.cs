@@ -1,19 +1,10 @@
-using System;
-using CommunityToolkit.Maui.Markup;
+using FmgLib.MauiMarkup;
 using MAUIBootstrap.Controls;
 
 namespace MAUIBootstrap.Utilities;
 
 public static class UIExtensions
 {
-    public static VerticalStackLayout Spacing(
-        this VerticalStackLayout layout, 
-        double spacing)
-    {
-        layout.Spacing = spacing;
-        return layout;
-    }
-
     public static Image ApplyMaterialIcon(
         this Image image,
         string iconName,
@@ -33,22 +24,11 @@ public static class UIExtensions
     public static BoxView MakeDivider(this BoxView boxView, Color color)
     {
         boxView
-            .Height(1)
+            .HeightRequest(1)
             .Color(color)
-            .BackgroundColor(color).Fill();
+            .BackgroundColor(color)
+            .FillHorizontal();
         return boxView;
-    }
-
-    public static BoxView Color(this BoxView boxView, Color color)
-    {
-        boxView.Color = color;
-        return boxView;
-    }
-
-    public static TapGestureRecognizer TapsRequired(this TapGestureRecognizer gesture, int taps)
-    {
-        gesture.NumberOfTapsRequired = taps;
-        return gesture;
     }
 
     public static VerticalStackLayout PrimaryAlert(
@@ -75,5 +55,83 @@ public static class UIExtensions
         layout.Insert(0, alert);
 
         return layout;
+    }
+
+        public static AccordionControl Header(this AccordionControl control, View view)
+    {
+        control.Header = view;
+        return control;
+    }
+
+    public static AccordionControl AccordionContent(this AccordionControl control, View view)
+    {
+        control.AccordionContent = view;
+        return control;
+    }
+
+    public static AlertControl Dismissable(this AlertControl control)
+    {
+        control.Dismissable = true;
+        return control;
+    }
+
+    public static AlertControl NotDismissable(this AlertControl control)
+    {
+        control.Dismissable = false;
+        return control;
+    }
+
+    public static AlertControl AlertContent(this AlertControl control, View view)
+    {
+        control.AlertContent = view;
+        return control;
+    }
+
+    public static AlertControl Primary(this AlertControl control)
+    {
+        control.AlertType = AlertType.Primary;
+        return control;
+    }
+
+    public static AlertControl Secondary(this AlertControl control)
+    {
+        control.AlertType = AlertType.Secondary;
+        return control;
+    }
+
+    public static AlertControl Success(this AlertControl control)
+    {
+        control.AlertType = AlertType.Success;
+        return control;
+    }
+
+    public static AlertControl Danger(this AlertControl control)
+    {
+        control.AlertType = AlertType.Danger;
+        return control;
+    }
+
+    public static AlertControl Warning(this AlertControl control)
+    {
+        control.AlertType = AlertType.Warning;
+        return control;
+    }
+
+    public static AlertControl Info(this AlertControl control)
+    {
+        control.AlertType = AlertType.Info;
+        return control;
+    }
+
+    public static AlertControl Light(this AlertControl control)
+    {
+        control.AlertType = AlertType.Light;
+        return control;
+    }
+
+    public static AlertControl Dark(this AlertControl control)
+    {
+        control.AlertType = AlertType.Dark;
+        return control;
     }
 }

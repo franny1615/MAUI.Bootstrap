@@ -1,8 +1,7 @@
 using System.Runtime.CompilerServices;
 using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Maui.Markup;
 using MAUIBootstrap.Utilities;
-using static CommunityToolkit.Maui.Markup.GridRowsColumns;
+using FmgLib.MauiMarkup;
 
 namespace MAUIBootstrap.Controls;
 
@@ -61,16 +60,18 @@ public class AccordionControl : Border
 	private readonly Grid _Header = new();
 	private readonly Image _Chevron = new Image().Margin(8);
 	private readonly BoxView _Divider = new BoxView().MakeDivider(Colors.DarkGray);
-	private readonly TapGestureRecognizer _CollapseTap = new TapGestureRecognizer().TapsRequired(1);
+	private readonly TapGestureRecognizer _CollapseTap = new TapGestureRecognizer().NumberOfTapsRequired(1);
 	#endregion
 
 	#region Constructor
 	public AccordionControl()
 	{
-		Margin = 0;
-		Content = _ContentLayout;
-		_Header.ColumnDefinitions = Columns.Define(Star, IconSize);
-		_Header.GestureRecognizers.Add(_CollapseTap);
+		this
+			.Content(_ContentLayout)
+			.Margin(0);
+		_Header
+			.ColumnDefinitions(defs => defs.Star().Absolute(IconSize))
+			.GestureRecognizers(_CollapseTap);
 		_CollapseTap.Tapped += OnCollapseTap;
 	}
 	#endregion
@@ -116,7 +117,7 @@ public class AccordionControl : Border
 			var stroke = Colors.DarkGray;
 			if (Stroke is SolidColorBrush solidColorBrush)
 				stroke = solidColorBrush.Color;
-			_Header.ColumnDefinitions = Columns.Define(Star, IconSize);
+			_Header.ColumnDefinitions(defs => defs.Star().Absolute(IconSize));
 			_Chevron.ApplyMaterialIcon(
 				IsCollapsed ? MaterialIcon.Keyboard_arrow_down : MaterialIcon.Keyboard_arrow_up, 
 				stroke, 
