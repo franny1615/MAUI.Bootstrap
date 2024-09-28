@@ -1,8 +1,9 @@
 using System.Globalization;
 using FmgLib.MauiMarkup;
 using MAUIBootstrap.Controls;
-using MAUIBootstrap.Utilities;
+using MAUIBootstrap.Extensions;
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Layouts;
 
 namespace SampleApp.Pages;
 
@@ -68,7 +69,8 @@ public class ControlsPage : ContentPage
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
 			.FontAttributes(FontAttributes.Bold).Padding(8)
-			.TextColor(Colors.Blue));
+			.TextColor(Colors.Blue))
+		.Info();
 	private readonly AlertControl _Light = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
@@ -85,13 +87,30 @@ public class ControlsPage : ContentPage
 		.Dark();
 	#endregion
 
+	#region Simple BadgeControl
+	private readonly BadgeControl _BadgeControl1 = new BadgeControl()
+		.Text(e => e.Translate("Hello"))
+		.TextSize(32);
+	private readonly BadgeControl _BadgeControl2 = new BadgeControl()
+		.Text(e => e.Translate("Hello"))
+		.TextSize(24);
+	private readonly BadgeControl _BadgeControl3 = new BadgeControl()
+		.Text(e => e.Translate("Hello"))
+		.TextSize(16);
+	private readonly BadgeControl _BadgeControl4 = new BadgeControl()
+		.Text(e => e.Translate("Hello"))
+		.TextSize(8);
+	#endregion
+
+	private readonly VerticalStackLayout _ContentLayout;
+
 	public ControlsPage()
 	{
 		Title = "Controls Page";
 
 		_Primary.AlertContent(_PrimaryContent);
 
-		var layout = new VerticalStackLayout()
+		_ContentLayout = new VerticalStackLayout()
 			.Padding(8)
 			.Spacing(16)
 			.Children([
@@ -109,9 +128,104 @@ public class ControlsPage : ContentPage
 				_Warning,
 				_Info,
 				_Light,
-				_Dark
+				_Dark,
+				new VerticalStackLayout()
+					.Spacing(2)
+					.Children([
+						_BadgeControl1.AlignLeft(),
+						_BadgeControl2.AlignLeft(),
+						_BadgeControl3.AlignLeft(),
+						_BadgeControl4.AlignLeft(),
+						new FlexLayout()
+							.Direction(FlexDirection.Row)
+							.Wrap(FlexWrap.Wrap)
+							.JustifyContent(FlexJustify.Center)
+							.Children([
+								new BadgeControl()
+									.Margin(2)
+									.Text("Primary")
+									.Primary(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Secondary")
+									.Secondary(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Success")
+									.Success(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Info")
+									.Info(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Warning")
+									.Warning(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Danger")
+									.Danger(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Light")
+									.Light(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Dark")
+									.Dark(),
+							]),
+						new FlexLayout()
+							.Direction(FlexDirection.Row)
+							.Wrap(FlexWrap.Wrap)
+							.JustifyContent(FlexJustify.Center)
+							.Children([
+								new BadgeControl()
+									.Margin(2)
+									.Text("Primary")
+									.Primary()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Secondary")
+									.Secondary()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Success")
+									.Success()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Info")
+									.Info()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Warning")
+									.Warning()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Danger")
+									.Danger()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Light")
+									.Light()
+									.Rounded(),
+								new BadgeControl()
+									.Margin(2)
+									.Text("Dark")
+									.Dark()
+									.Rounded(),
+							])
+					])
 			]);
-		this.Content(layout);
+		this.Content(
+			new ScrollView()
+				.Content(_ContentLayout)
+		);
 
 		_Primary.CloseClicked += RemoveAlert;
 		_Secondary.CloseClicked += RemoveAlert;
@@ -122,13 +236,13 @@ public class ControlsPage : ContentPage
 		_Light.CloseClicked += RemoveAlert;
 		_Dark.CloseClicked += RemoveAlert;
 
-		layout.PrimaryAlert(new Label()
+		_ContentLayout.PrimaryAlert(new Label()
 			.Text("some text")
 			.CenterVertical()
 			.Padding(4)
 			.TextColor(Colors.White));
 
-		layout.Add(new Button()
+		_ContentLayout.Add(new Button()
 			.Text("Toggle Language")
 			.Center()
 			.OnClicked((s, e) => 
@@ -146,9 +260,9 @@ public class ControlsPage : ContentPage
 
     private void RemoveAlert(object? sender, EventArgs e)
 	{
-		if (sender is AlertControl control && Content is VerticalStackLayout layout)
+		if (sender is AlertControl control)
 		{
-			layout.Remove(control);
+			_ContentLayout.Remove(control);
 		}
 	}
 }

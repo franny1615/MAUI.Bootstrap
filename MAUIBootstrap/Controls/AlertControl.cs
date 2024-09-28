@@ -1,21 +1,9 @@
 using System.Runtime.CompilerServices;
-using MAUIBootstrap.Utilities;
+using MAUIBootstrap.Extensions;
 using Microsoft.Maui.Controls.Shapes;
 using FmgLib.MauiMarkup;
 
 namespace MAUIBootstrap.Controls;
-
-public enum AlertType 
-{
-	Primary,
-	Secondary,
-	Success,
-	Danger,
-	Warning,
-	Info,
-	Light,
-	Dark
-}
 
 public class AlertControl : Border
 {
@@ -32,18 +20,6 @@ public class AlertControl : Border
 	{
 		get => (TimeSpan)GetValue(TimeoutProperty);
 		set => SetValue(TimeoutProperty, value);
-	}
-
-	public static BindableProperty AlertTypeProperty = BindableProperty.Create(
-		nameof(AlertType),
-		typeof(AlertType),
-		typeof(AlertControl),
-		AlertType.Primary
-	);
-	public AlertType AlertType
-	{
-		get => (AlertType)GetValue(AlertTypeProperty);
-		set => SetValue(AlertTypeProperty, value);
 	}
 
 	public static BindableProperty DismissableProperty = BindableProperty.Create(
@@ -69,6 +45,18 @@ public class AlertControl : Border
 		get => (View)GetValue(AlertContentProperty);
 		set => SetValue(AlertContentProperty, value);
 	}
+
+	public static BindableProperty DismissIconProperty = BindableProperty.Create(
+		nameof(DismissIcon),
+		typeof(ImageSource),
+		typeof(AlertControl),
+		null
+	);
+	public ImageSource DismissIcon
+	{
+		get => (ImageSource)GetValue(DismissIconProperty);
+		set => SetValue(DismissIconProperty, value);
+	}
 	#endregion
 
 	#region UI Definitions
@@ -81,8 +69,12 @@ public class AlertControl : Border
 	#region Constructor
 	public AlertControl()
 	{
-		this.Content(_ContentLayout);
+		this
+			.Content(_ContentLayout)
+			.Stroke(Colors.Transparent)
+			.StrokeShape(new RoundRectangle().CornerRadius(5));
 		_CloseIcon
+			.Source(e => e.Path(nameof(DismissIcon)).Source(this))
 			.GestureRecognizers(new TapGestureRecognizer()
 			.Command(new Command(async () => 
 				{
@@ -92,7 +84,6 @@ public class AlertControl : Border
 					CloseClicked?.Invoke(this, EventArgs.Empty);
 				})
 			));
-		ApplyAlertTypeStyle();
 	}
     #endregion
 
@@ -116,67 +107,17 @@ public class AlertControl : Border
 				CloseClicked?.Invoke(this, EventArgs.Empty);
 			});
 		}
-		else if (propertyName == AlertTypeProperty.PropertyName)
-		{
-			ApplyAlertTypeStyle();
-		}
     }
 
 	private void LayoutItems()
 	{
 		_ContentLayout.Clear();
 		_ContentLayout.Add(AlertContent.Column(0));
-		_ContentLayout.Add(_CloseIcon.Column(1));
+		_ContentLayout.Add(_CloseIcon.Center().Column(1));
 
 		_CloseIcon.IsVisible = Dismissable;
 		if (AlertContent != null)
 			AlertContent.ColumnSpan(Dismissable ? 1 : 2);
 	}
-
-	private void ApplyAlertTypeStyle()
-	{
-		Color? color = null;
-		Color? bgColor = null;
-		StrokeThickness = 1;
-		StrokeShape = new RoundRectangle { CornerRadius = 8 };
-        switch (AlertType)
-        {
-            case AlertType.Primary:
-				color = Colors.White;
-				bgColor = Color.FromArgb("#0d6efd");
-                break;
-            case AlertType.Secondary:
-				color = Colors.White;
-				bgColor = Color.FromArgb("#6c757d");
-                break;
-            case AlertType.Success:
-				color = Colors.White;
-				bgColor = Color.FromArgb("#198754");
-                break;
-            case AlertType.Danger:
-				color = Colors.White;
-				bgColor = Color.FromArgb("#dc3545");
-                break;
-            case AlertType.Warning:
-				color = Colors.Black;
-				bgColor = Color.FromArgb("#ffc107");
-                break;
-            case AlertType.Info:
-				color = Colors.Blue;
-				bgColor = Color.FromArgb("#0dcaf0");
-                break;
-            case AlertType.Light:
-				color = Colors.Black;
-				bgColor = Colors.White;
-                break;
-            case AlertType.Dark:
-				color = Colors.White;
-				bgColor = Colors.Black;
-                break;
-        }
-		Stroke = color;
-		_CloseIcon.ApplyMaterialIcon(MaterialIcon.Close, color ?? Colors.White, 32);
-		BackgroundColor = bgColor;
-    }
-    #endregion
+	#endregion
 }

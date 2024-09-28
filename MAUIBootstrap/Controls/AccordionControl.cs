@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using CommunityToolkit.Maui.Extensions;
-using MAUIBootstrap.Utilities;
+using MAUIBootstrap.Extensions;
 using FmgLib.MauiMarkup;
 
 namespace MAUIBootstrap.Controls;
