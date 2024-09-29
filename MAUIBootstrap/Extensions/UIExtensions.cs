@@ -35,21 +35,21 @@ public static class UIExtensions
         this VerticalStackLayout layout,
         View content,
         bool dismissable = true,
-        int timeoutMS = 0
-    )
+        int timeoutMS = 0)
     {
         var alert = new AlertControl()
         {
             Dismissable = dismissable
         }
         .AlertContent(content)
-        .Timeout(TimeSpan.FromMilliseconds(timeoutMS))
-        .Primary();;
+        .Primary()
+        .Timeout(TimeSpan.FromMilliseconds(timeoutMS));
+
         alert.CloseClicked += (s, e) => 
         {
             if (s is AlertControl alertControl)
-            {   
-                layout.Remove(alertControl);
+            {
+                layout.Remove(alertControl);            
             }
         };
         layout.Insert(0, alert);
