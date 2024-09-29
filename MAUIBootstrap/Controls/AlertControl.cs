@@ -104,7 +104,10 @@ public class AlertControl : Border
 			Task.Run(async () => 
 			{
 				await Task.Delay(Timeout);
-				CloseClicked?.Invoke(this, EventArgs.Empty);
+				MainThread.BeginInvokeOnMainThread(() => 
+				{
+					CloseClicked?.Invoke(this, EventArgs.Empty);
+				});
 			});
 		}
     }
@@ -112,7 +115,10 @@ public class AlertControl : Border
 	private void LayoutItems()
 	{
 		_ContentLayout.Clear();
-		_ContentLayout.Add(AlertContent.Column(0));
+		if (AlertContent != null)
+		{
+			_ContentLayout.Add(AlertContent.Column(0));
+		}
 		_ContentLayout.Add(_CloseIcon.Center().Column(1));
 
 		_CloseIcon.IsVisible = Dismissable;
