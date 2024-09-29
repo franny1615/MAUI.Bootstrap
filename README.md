@@ -2,6 +2,13 @@
 
 A class library project showcasing .NET MAUI version of the Bootstrap web component library. 
 
+
+One of the most useful libraries I have seen for C# only MAUI developers.
+
+[FmgLib.MauiMarkup GitHub](https://github.com/FmgLib/FmgLib.MauiMarkup)
+
+[FmgLib.MauiMarkup Docs](https://fmgyazilim.com/en/fmglibmauimarkup#fmglibmauimarkup-section)
+
 ### Accordion Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.
 ```
