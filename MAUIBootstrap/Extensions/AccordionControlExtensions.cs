@@ -6,6 +6,44 @@ namespace MAUIBootstrap.Extensions;
 
 public static class AccordionControlExtensions
 {
+    #region Is Collapsed
+    public static T IsCollapsed<T>(
+        this T self, 
+        bool source) where T : AccordionControl
+    {
+        self.SetValue(AccordionControl.IsCollapsedProperty, source);
+        return self;
+    }
+
+    public static T IsCollapsed<T>(
+        this T self, 
+        Func<PropertyContext<bool>, IPropertyBuilder<bool>> configure) where T : AccordionControl
+    {
+        var context = new PropertyContext<bool>(self, AccordionControl.IsCollapsedProperty);
+        configure(context).Build();
+        return self;
+    }
+
+    public static SettersContext<T> IsCollapsed<T>(
+        this SettersContext<T> self,
+        bool source)
+        where T : AccordionControl
+    {
+        self.XamlSetters.Add(new Setter { Property = AccordionControl.IsCollapsedProperty, Value = source });
+        return self;
+    }
+
+    public static SettersContext<T> IsCollapsed<T>(
+        this SettersContext<T> self, 
+        Func<PropertySettersContext<bool>, 
+        IPropertySettersBuilder<bool>> configure) where T : AccordionControl
+    {
+        var context = new PropertySettersContext<bool>(self.XamlSetters, AccordionControl.IsCollapsedProperty);
+        configure(context).Build();
+        return self;
+    }
+    #endregion 
+
     #region Accordion Content
     public static T AccordionContent<T>(
         this T self, 

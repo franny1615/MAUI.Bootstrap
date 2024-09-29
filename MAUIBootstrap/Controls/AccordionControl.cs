@@ -117,11 +117,12 @@ public class AccordionControl : Border
 			var stroke = Colors.DarkGray;
 			if (Stroke is SolidColorBrush solidColorBrush)
 				stroke = solidColorBrush.Color;
+			_Header.ColumnDefinitions.Clear();
 			_Header.ColumnDefinitions(defs => defs.Star().Absolute(IconSize));
 			_Chevron.ApplyMaterialIcon(
 				IsCollapsed ? MaterialIcon.Keyboard_arrow_down : MaterialIcon.Keyboard_arrow_up, 
 				stroke, 
-				IconSize); 
+				IconSize).Column(1).Center(); 
 		}
     }
 

@@ -45,7 +45,13 @@ public class AccordionControlDemoPage : ContentPage
 					.Stroke(Colors.DarkGray)
 					.StrokeShape(new RoundRectangle().CornerRadius(0))
 					.Header(new Label().Text("No Corners!").FontSize(18).Padding(8))
-					.AccordionContent(new Label().Text("Some long form content perhaps").FontSize(14).Padding(8))
+					.AccordionContent(new Label().Text("Some long form content perhaps").FontSize(14).Padding(8)),
+				new AccordionControl()
+					.Stroke(Colors.DarkGray)
+					.StrokeShape(new RoundRectangle().CornerRadius(0))
+					.Header(new Label().Text("No Corners!").CenterVertical().FontSize(18).Padding(8))
+					.AccordionContent(new Label().Text("Did you notice the larger Icon Size?").FontSize(14).Padding(8))
+					.IconSize(64),
 			])
 			.Padding(16)
 			.Spacing(16));
