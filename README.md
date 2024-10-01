@@ -106,3 +106,40 @@ var primaryBadge = new BadgeControl()
 
 .Rounded() // will try to make the badge pill shaped
 ```
+
+### Breadcrumb Control API
+```
+// regular usage
+var breadcrumbControl = new BreadcrumbControl
+{
+    Routes = 
+    {
+        new Breadcrumb
+        {
+            Name = "Route 1",
+            IsSelected = true
+        }
+    }
+};
+
+// fluent method powered usage
+var breadcrumbControl = new BreadcrumbControl()
+    .Routes([
+        new Breadcrumb().Name("Route 1").Selected()
+    ]);
+
+// string inside .Name() fluent method is the key used for translation
+// it is also the key that is delivered in the OnRouteClicked event
+
+// full example
+var breadCrumb = new BreadcrumbControl()
+    .Routes([
+        new Breadcrumb().Name("Main Page"),
+        new Breadcrumb().Name("Current Page").Selected()
+    ])
+    .OnRouteClicked((s, e) => {
+        if (e.SelectedRoute == "Main Page") {
+            // Main Page routing logic here
+        }
+    });
+```

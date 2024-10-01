@@ -35,6 +35,19 @@ public class BadgeControlDemoPage : ContentPage
 		.Content(_ContentLayout);
 
 		_ContentLayout.Children([
+			new BreadcrumbControl()
+				.Routes([
+					new Breadcrumb().Name("Controls Page"), 
+					new Breadcrumb()
+						.Name(Title)
+						.Selected()])
+				.OnRouteClicked((s, e) => 
+				{
+					if (e.SelectedRoute == "Controls Page")
+					{
+						Navigation.PopAsync();
+					}
+				}),
 			_BadgeControl1.AlignLeft(),
 			_BadgeControl2.AlignLeft(),
 			_BadgeControl3.AlignLeft(),

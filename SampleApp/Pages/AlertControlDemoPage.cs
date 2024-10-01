@@ -74,7 +74,7 @@ public class AlertControlDemoPage : ContentPage
 	#endregion
 
 	private readonly VerticalStackLayout _ContentLayout = new VerticalStackLayout()
-		.Padding(16)
+		.Padding(0)
 		.Spacing(16);
 
 	#region Constructor
@@ -94,7 +94,25 @@ public class AlertControlDemoPage : ContentPage
 
 		this
 		.Title("Alert Control")
-		.Content(_ContentLayout);
+		.Content(new VerticalStackLayout()
+			.Spacing(16)
+			.Padding(16)
+			.Children([
+				new BreadcrumbControl()
+					.Routes([
+						new Breadcrumb().Name("Controls Page"), 
+						new Breadcrumb()
+							.Name(Title)
+							.Selected()])
+					.OnRouteClicked((s, e) => 
+					{
+						if (e.SelectedRoute == "Controls Page")
+						{
+							Navigation.PopAsync();
+						}
+					}),
+				_ContentLayout
+			]));
 
 		_PrimaryNonDismissable.CloseClicked += RemoveAlert;
 		_Primary.CloseClicked += RemoveAlert;

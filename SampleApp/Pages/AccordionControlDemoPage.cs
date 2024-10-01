@@ -34,6 +34,19 @@ public class AccordionControlDemoPage : ContentPage
 		.Content(
 			new VerticalStackLayout()
 			.Children([
+				new BreadcrumbControl()
+					.Routes([
+						new Breadcrumb().Name("Controls Page"), 
+						new Breadcrumb()
+							.Name(Title)
+							.Selected()])
+					.OnRouteClicked((s, e) => 
+					{
+						if (e.SelectedRoute == "Controls Page")
+						{
+							Navigation.PopAsync();
+						}
+					}),
 				new VerticalStackLayout()
 					.Spacing(0)
 					.Children([

@@ -1,10 +1,11 @@
 using FmgLib.MauiMarkup;
+using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
 
 namespace SampleApp.Pages;
 
 public class ControlsPage : ContentPage
-{
+{	
 	public ControlsPage()
 	{
 		this
@@ -16,6 +17,12 @@ public class ControlsPage : ContentPage
 						.Spacing(16)
 						.Padding(16)
 						.Children([
+							new BreadcrumbControl()
+								.Routes([
+									new Breadcrumb()
+										.Name(Title)
+										.Selected()
+								]),
 							new Button()
 								.Text("Accordion")
 								.OnClicked((s, e) => {
@@ -30,6 +37,11 @@ public class ControlsPage : ContentPage
 								.Text("Badge")
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new BadgeControlDemoPage());
+								}),
+							new Button()
+								.Text("Breadcrumb")
+								.OnClicked((s, e) => {
+									Navigation.PushAsync(new BreadcrumbControlDemoPage());
 								})
 						])));
 	}
