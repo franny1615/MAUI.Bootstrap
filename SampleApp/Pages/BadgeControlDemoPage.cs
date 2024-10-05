@@ -1,4 +1,5 @@
 using System.Globalization;
+using CommunityToolkit.Maui.Alerts;
 using FmgLib.MauiMarkup;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
@@ -135,10 +136,53 @@ public class BadgeControlDemoPage : ContentPage
 						.Text("Dark")
 						.Dark()
 						.Rounded(),
-				])
+				]),
+				new BoxView().MakeDivider(Colors.DarkGray),
+				new Grid()
+					.HorizontalOptions(LayoutOptions.Start)
+					.Children([
+						new Button()
+							.Text("Primary")
+							.Margin(0,8,12,8)
+							.Primary()
+							.HorizontalOptions(LayoutOptions.Center)
+							.VerticalOptions(LayoutOptions.Center)
+							.OnClicked((s,e) => {
+								Toast.Make("Yay").Show();
+							}),
+						new BadgeControl()
+							.HeightRequest(20)
+							.WidthRequest(20)
+							.Stroke(Colors.White)
+							.VerticalOptions(LayoutOptions.Start)
+							.HorizontalOptions(LayoutOptions.End)
+							.Danger()
+							.Rounded()
+					]),
+				new Grid()
+					.HorizontalOptions(LayoutOptions.Start)
+					.Children([
+						new Button()
+							.Text("Primary")
+							.Margin(0,8,12,8)
+							.Primary()
+							.HorizontalOptions(LayoutOptions.Center)
+							.VerticalOptions(LayoutOptions.Center)
+							.OnClicked((s,e) => {
+								Toast.Make("Yay 2").Show();
+							}),
+						new BadgeControl()
+							.Text("99+")
+							.TextSize(13)
+							.VerticalOptions(LayoutOptions.Start)
+							.HorizontalOptions(LayoutOptions.End)
+							.Danger()
+							.Rounded()
+					]),
 		]);
 
 		_ContentLayout.Add(new Button()
+			.Warning()
 			.Text("Toggle Language")
 			.Center()
 			.OnClicked((s, e) => 

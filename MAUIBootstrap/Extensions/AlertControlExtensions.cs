@@ -142,7 +142,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.White)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#0d6efd"));
+            .BackgroundColor(BootstrapColors.Primary);
         return alertControl;
     }
 
@@ -154,7 +154,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.White)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#6c757d"));
+            .BackgroundColor(BootstrapColors.Secondary);
         return alertControl;
     }
 
@@ -166,7 +166,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.White)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#198754"));
+            .BackgroundColor(BootstrapColors.Success);
         return alertControl;
     }
 
@@ -178,7 +178,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.Black)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#ffc107"));
+            .BackgroundColor(BootstrapColors.Warning);
         return alertControl;
     }
 
@@ -190,7 +190,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.White)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#dc3545"));
+            .BackgroundColor(BootstrapColors.Danger);
         return alertControl;
     }
 
@@ -202,7 +202,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.Black)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#0dcaf0"));
+            .BackgroundColor(BootstrapColors.Info);
         return alertControl;
     }
 
@@ -214,7 +214,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.Black)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#f8f9fa"));
+            .BackgroundColor(BootstrapColors.Light);
         return alertControl;
     }
 
@@ -226,7 +226,7 @@ public static class AlertControlExtensions
                 .Glyph(MaterialIcon.Close)
                 .Color(Colors.White)
                 .Size(32))
-            .BackgroundColor(Color.FromArgb("#212529"));
+            .BackgroundColor(BootstrapColors.Dark);
         return alertControl;
     }
     #endregion

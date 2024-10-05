@@ -25,24 +25,34 @@ public class ControlsPage : ContentPage
 								]),
 							new Button()
 								.Text("Accordion")
+								.Primary()
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new AccordionControlDemoPage());
 								}),
 							new Button()
 								.Text("Alert")
+								.Primary()
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new AlertControlDemoPage());
 								}),
 							new Button()
 								.Text("Badge")
+								.Primary()
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new BadgeControlDemoPage());
 								}),
 							new Button()
 								.Text("Breadcrumb")
+								.Primary()
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new BreadcrumbControlDemoPage());
-								})
+								}),
+							new Button()
+								.Text("Button")
+								.Primary()
+								.OnClicked((s, e) => {
+									Navigation.PushAsync(new ButtonStylesDemoPage());
+								}),
 						])));
 	}
 }

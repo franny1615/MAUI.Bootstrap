@@ -11,7 +11,7 @@ public partial class Breadcrumb : ObservableObject
 	public string name = string.Empty;
 
 	[ObservableProperty]
-	public Color textColor = Color.FromArgb("#0d6efd");
+	public Color textColor = BootstrapColors.Primary;
 
 	[ObservableProperty]
 	public bool isSelected = false;

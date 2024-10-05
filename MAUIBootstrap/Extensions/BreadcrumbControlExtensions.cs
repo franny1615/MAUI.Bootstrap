@@ -22,7 +22,7 @@ public static class BreadcrumbControlExtensions
     public static Breadcrumb NotSelected(this Breadcrumb breadcrumb)
     {
         breadcrumb.IsSelected = false;
-        breadcrumb.TextColor = Color.FromArgb("#0d6efd");
+        breadcrumb.TextColor = BootstrapColors.Primary;
         return breadcrumb;
     }
     #endregion
