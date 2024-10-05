@@ -170,6 +170,13 @@ var button = new Button()
     .Outlined() // must come second
     .SharpCorners();
 
+
+// also work with custom ButtonControl
+var buttonContorl = new ButtonControl()
+    .Primary()
+    .Outlined()
+    .SharpCorners();
+
 // RADIO BUTTON
 // fluent method to style existing RadioButton
 .Bootstrap(

@@ -19,6 +19,27 @@ public class ButtonStylesDemoPage : ContentPage
 			.Text("Text Button Outline")
 			.Primary()
 			.Outlined();
+		var btn3 = new ButtonControl()
+			.Dark()
+			.Outlined()
+			.SharpCorners()
+			.AlignLeft()
+			.Content(new Label()
+				.Text("Dark")
+				.TextColor(BootstrapColors.Dark)
+				.FontAttributes(FontAttributes.Bold)
+				.VerticalOptions(LayoutOptions.Center))
+			.OnTapped((s,e) => {
+				Toast.Make("Dark").Show();
+			});
+		var btn4 = new ButtonControl()
+			.Primary()
+			.AlignLeft()
+			.Content(new Label()
+				.Text("Primary")
+				.TextColor(Colors.White)
+				.FontAttributes(FontAttributes.Bold)
+				.VerticalOptions(LayoutOptions.Center));
 
 		this
 		.Title("Button Styles")
@@ -318,7 +339,116 @@ public class ButtonStylesDemoPage : ContentPage
 										string isChecked = ((CheckboxControl)s!).IsChecked ? "Checked" : "Unchecked";
 										Toast.Make(isChecked).Show(); 
 									}),
-							])
+							]),
+						new BoxView().MakeDivider(Colors.DarkGray),
+						new Label().Text("ButtonControl").FontAttributes(FontAttributes.Bold),
+						new ButtonControl()
+							.Primary()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Primary")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Primary").Show();
+							}),
+						new ButtonControl()
+							.Secondary()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Secondary")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Secondary").Show();
+							}),
+						new ButtonControl()
+							.Success()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Success")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Success").Show();
+							}),
+						new ButtonControl()
+							.Info()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Info")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Info").Show();
+							}),
+						new ButtonControl()
+							.Warning()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Warning")
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Warning").Show();
+							}),
+						new ButtonControl()
+							.Danger()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Danger")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Danger").Show();
+							}),
+						new ButtonControl()
+							.Light()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Light")
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Light").Show();
+							}),
+						new ButtonControl()
+							.Dark()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Dark")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								Toast.Make("Dark").Show();
+							}),
+						btn3,
+						btn4,
+						new ButtonControl()
+							.Danger()
+							.AlignLeft()
+							.Content(new Label()
+								.Text("Disable/Enable")
+								.TextColor(Colors.White)
+								.FontAttributes(FontAttributes.Bold)
+								.VerticalOptions(LayoutOptions.Center))
+							.OnTapped((s,e) => {
+								if (btn3.IsEnabled)
+									btn3.Disabled();
+								else
+									btn3.Enabled();
+									
+								if (btn4.IsEnabled)
+									btn4.Disabled();
+								else
+									btn4.Enabled();
+							}),
 				])
 			));
 	}
