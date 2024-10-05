@@ -143,3 +143,63 @@ var breadCrumb = new BreadcrumbControl()
         }
     });
 ```
+
+### Button | RadioButton | CheckboxControl Styles
+```
+// fluent methods available for existing Button control
+.Primary()
+.Secondary()
+.Success()
+.Warning()
+.Danger()
+.Info()
+.Light()
+.Dark()
+.Link()
+// make the button outlined
+.Outlined()
+// enable/disable state
+.Disabled()
+.Enabled()
+// no corner radius
+.SharpCorners()
+
+// primary, outline, sharp
+var button = new Button()
+    .Primary()
+    .Outlined() // must come second
+    .SharpCorners();
+
+// RADIO BUTTON
+// fluent method to style existing RadioButton
+.Bootstrap(
+    selectedColor,
+    deselectedColor
+);
+
+// CHECK BOX
+// fluent methods to style checkbox control
+.Primary()
+.Secondary()
+.Success()
+.Warning()
+.Danger()
+.Info()
+.Light()
+.Dark()
+
+// example
+new CheckboxControl()
+    .Primary()
+    .Content(new Label()
+        .Text("Primary")
+        .TextColor(Colors.White)
+        .VerticalOptions(LayoutOptions.Center))
+    .OnCheckedChanged((s, e) => { 
+        if (s is CheckboxControl ctrl) 
+        {
+            // ctrl.IsChecked has your value;
+        }
+    });
+
+```
