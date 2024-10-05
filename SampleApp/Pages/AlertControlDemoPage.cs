@@ -1,4 +1,5 @@
 using FmgLib.MauiMarkup;
+using MAUIBootstrap;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
 
@@ -11,7 +12,7 @@ public class AlertControlDemoPage : ContentPage
 		.NotDismissable()
 		.AlertContent(new Label()
 			.Text("Will be gone in 3 seconds").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Danger()
 		.Timeout(TimeSpan.FromMilliseconds(3000));
@@ -19,56 +20,56 @@ public class AlertControlDemoPage : ContentPage
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Primary();
 	private readonly AlertControl _Secondary = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Secondary();
 	private readonly AlertControl _Success = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Success();
 	private readonly AlertControl _Danger = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Danger();
 	private readonly AlertControl _Warning = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.Black))
 		.Warning();
 	private readonly AlertControl _Info = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.Blue))
 		.Info();
 	private readonly AlertControl _Light = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.Black))
 		.Light();
 	private readonly AlertControl _Dark = new AlertControl()
 		.Dismissable()
 		.AlertContent(new Label()
 			.Text("Content can be anything.").FontSize(14)
-			.FontAttributes(FontAttributes.Bold).Padding(8)
+			.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)).Padding(8)
 			.TextColor(Colors.White))
 		.Dark();
 	#endregion

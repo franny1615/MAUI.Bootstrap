@@ -1,3 +1,4 @@
+using MAUIBootstrap;
 using SampleApp.Pages;
 
 namespace SampleApp;
@@ -6,10 +7,7 @@ public class App : Application
 {
     public App()
     {
-        // leaving here for future reference
-        // Resources.MergedDictionaries.Add(new Resources.Styles.Colors());
-        // Resources.MergedDictionaries.Add(new Resources.Styles.Styles());
-
+        Resources.MergedDictionaries.Add(Bootstrap.Styles());
         MainPage = new NavigationPage(new ControlsPage());
     }
 }

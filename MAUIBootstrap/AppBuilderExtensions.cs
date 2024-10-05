@@ -1,4 +1,3 @@
-using System;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using FmgLib.MauiMarkup;
@@ -8,8 +7,13 @@ namespace MAUIBootstrap;
 
 public static class AppBuilderExtensions
 {
-    public static MauiAppBuilder UseMauiBootstrap(this MauiAppBuilder builder)
+    public static MauiAppBuilder UseMauiBootstrap(
+        this MauiAppBuilder builder,
+        string regularFontName,
+        string boldFontName)
     {
+        DynamicConstants.Instance.RegularFont = regularFontName;
+        DynamicConstants.Instance.BoldFont = boldFontName;
         builder
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
@@ -20,5 +24,17 @@ public static class AppBuilderExtensions
                 fonts.AddFont("MaterialIcons-Regular.ttf", nameof(MaterialIcon));
             });
         return builder;
+    }
+}
+
+public static class Bootstrap
+{
+    public static ResourceDictionary Styles()
+    {
+        return new ResourceDictionary()
+        {
+            new Style<Button>(e => e.FontFamily(DynamicConstants.Instance.RegularFont)),
+            new Style<Label>(e => e.FontFamily(DynamicConstants.Instance.RegularFont))
+        };
     }
 }

@@ -10,12 +10,15 @@ One of the most useful libraries I have seen for C# only MAUI developers.
 [FmgLib.MauiMarkup Docs](https://fmgyazilim.com/en/fmglibmauimarkup#fmglibmauimarkup-section)
 
 ### Using MAUI.Bootstrap
+In your MauiProgram.cs file CreateMauiApp() method
 ```
-In your MauiProgram.cs file
-...
-builder.UseMauiBootstrap();
-...
+builder.UseMauiBootstrap("REGULAR_FONT_FAMILY_NAME", "BOLD_FONT_FAMILY_NAME");
 ```
+In your App.cs file constructor
+```
+Resources.MergedDictionaries.Add(Bootstrap.Styles());
+```
+The above will set up everything needed to use the class library.
 
 ### Accordion Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.

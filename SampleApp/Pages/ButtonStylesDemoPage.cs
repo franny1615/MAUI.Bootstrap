@@ -27,7 +27,7 @@ public class ButtonStylesDemoPage : ContentPage
 			.Content(new Label()
 				.Text("Dark")
 				.TextColor(BootstrapColors.Dark)
-				.FontAttributes(FontAttributes.Bold)
+				.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 				.VerticalOptions(LayoutOptions.Center))
 			.OnTapped((s,e) => {
 				Toast.Make("Dark").Show();
@@ -38,7 +38,7 @@ public class ButtonStylesDemoPage : ContentPage
 			.Content(new Label()
 				.Text("Primary")
 				.TextColor(Colors.White)
-				.FontAttributes(FontAttributes.Bold)
+				.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 				.VerticalOptions(LayoutOptions.Center));
 
 		this
@@ -216,7 +216,7 @@ public class ButtonStylesDemoPage : ContentPage
 									.OnClicked((s,e) => Toast.Make("Warning").Show()),
 							]),
 						new BoxView().MakeDivider(Colors.DarkGray),
-						new Label().Text("Radio Button").FontAttributes(FontAttributes.Bold),
+						new Label().Text("Radio Button").FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)),
 						new HorizontalStackLayout()
 							.Spacing(8)
 							.Children([
@@ -246,7 +246,7 @@ public class ButtonStylesDemoPage : ContentPage
 										.VerticalOptions(LayoutOptions.Center)),
 							]),
 						new BoxView().MakeDivider(Colors.DarkGray),
-						new Label().Text("Checkbox").FontAttributes(FontAttributes.Bold),
+						new Label().Text("Checkbox").FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)),
 						new FlexLayout()
 							.Direction(FlexDirection.Row)
 							.Wrap(FlexWrap.Wrap)
@@ -341,14 +341,14 @@ public class ButtonStylesDemoPage : ContentPage
 									}),
 							]),
 						new BoxView().MakeDivider(Colors.DarkGray),
-						new Label().Text("ButtonControl").FontAttributes(FontAttributes.Bold),
+						new Label().Text("ButtonControl").FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)),
 						new ButtonControl()
 							.Primary()
 							.AlignLeft()
 							.Content(new Label()
 								.Text("Primary")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Primary").Show();
@@ -359,7 +359,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Secondary")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Secondary").Show();
@@ -370,7 +370,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Success")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Success").Show();
@@ -381,7 +381,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Info")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Info").Show();
@@ -391,7 +391,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.AlignLeft()
 							.Content(new Label()
 								.Text("Warning")
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Warning").Show();
@@ -402,7 +402,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Danger")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Danger").Show();
@@ -412,7 +412,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.AlignLeft()
 							.Content(new Label()
 								.Text("Light")
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Light").Show();
@@ -423,7 +423,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Dark")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								Toast.Make("Dark").Show();
@@ -436,7 +436,7 @@ public class ButtonStylesDemoPage : ContentPage
 							.Content(new Label()
 								.Text("Disable/Enable")
 								.TextColor(Colors.White)
-								.FontAttributes(FontAttributes.Bold)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 								.VerticalOptions(LayoutOptions.Center))
 							.OnTapped((s,e) => {
 								if (btn3.IsEnabled)

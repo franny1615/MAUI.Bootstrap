@@ -51,7 +51,9 @@ public class BadgeControl : Border
 				.Text(e => e.Path(nameof(Text)).Source(this))
 				.TextColor(e => e.Path(nameof(TextColor)).Source(this))
 				.FontSize(e => e.Path(nameof(TextSize)).Source(this))
-				.FontAttributes(FontAttributes.Bold)
+				.FontFamily(e => e
+					.Path(nameof(DynamicConstants.BoldFont))
+					.Source(DynamicConstants.Instance))
 		)
 		.Padding(8, 2, 8, 2)
 		.Stroke(Colors.Transparent)

@@ -73,7 +73,7 @@ public class BreadcrumbControl : ContentView
 					.Text(e => e.Translate(Routes[i].Name))
 					.TextColor(e => e.Path(nameof(Breadcrumb.TextColor)).Source(Routes[i]))
 					.FontSize(13)
-					.FontAttributes(FontAttributes.Bold)
+					.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 					.GestureRecognizers(new TapGestureRecognizer()
 						.NumberOfTapsRequired(1)
 						.OnTapped((s,e) => 
@@ -95,7 +95,7 @@ public class BreadcrumbControl : ContentView
 					_ContentLayout.Add(new Label()
 						.Text("/")
 						.FontSize(13)
-						.FontAttributes(FontAttributes.Bold)
+						.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance))
 						.TextColor(Colors.DarkGray));	
 				}
 
