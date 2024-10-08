@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    x:Class="MAUIBootstrap.Resources.Styles.BootstrapColors">
+
+    <system:String x:Key="RegularFont">OpenSansRegular</system:String>
+    <system:String x:Key="BoldFont">OpensSansSemibold</system:String>
+
+    <Color x:Key="Primary">#0d6efd</Color>
+    <Color x:Key="Secondary">#6c757d</Color>
+    <Color x:Key="Success">#198754</Color>
+    <Color x:Key="Warning">#ffc107</Color>
+    <Color x:Key="Danger">#dc3545</Color>
+    <Color x:Key="Info">#0dcaf0</Color>
+    <Color x:Key="Light">#dfe0e1</Color>
+    <Color x:Key="Dark">#212529</Color>
+    <Color x:Key="Link">#0d6efd</Color>
+
+    <Color x:Key="PrimaryShade">#07377f</Color>
+    <Color x:Key="SecondaryShade">#363b3f</Color>
+    <Color x:Key="SuccessShade">#0d442a</Color>
+    <Color x:Key="WarningShade">#997404</Color>
+    <Color x:Key="DangerShade">#842029</Color>
+    <Color x:Key="InfoShade">#087990</Color>
+    <Color x:Key="LightShade">#7c7d7d</Color>
+    <Color x:Key="DarkShade">#141619</Color>
+
+    <Color x:Key="PageColor">White</Color>
+    <Color x:Key="PageColorLight">White</Color>
+    <Color x:Key="PageColorDark">Black</Color>
+
+    <Color x:Key="PageTitleColor">Black</Color>
+    <Color x:Key="PageTitleColorLight">Black</Color>
+    <Color x:Key="PageTitleColorDark">White</Color>
+
+    <Color x:Key="NavigationBarColor">White</Color>
+    <Color x:Key="NavigationBarColorLight">White</Color>
+    <Color x:Key="NavigationBarColorDark">Black</Color>
+
+    <Color x:Key="TextColor">Black</Color>
+    <Color x:Key="TextColorLight">Black</Color>
+    <Color x:Key="TextColorDark">White</Color>
+</ResourceDictionary>

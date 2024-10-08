@@ -16,9 +16,46 @@ builder.UseMauiBootstrap("REGULAR_FONT_FAMILY_NAME", "BOLD_FONT_FAMILY_NAME");
 ```
 In your App.cs file constructor
 ```
-Resources.MergedDictionaries.Add(Bootstrap.Styles());
+using MAUIBootstrap.Resources.Styles;
+..
+Resources.Add(new BootstrapColors());
+Resources.Add(new BootstrapStyles());
 ```
 The above will set up everything needed to use the class library.
+
+### Dark/Light Mode Theming
+The MAUI.Bootstrap library has basic dark/mode light mode theming available for you to use. 
+```
+// toggle theme
+var themeButton = new Button()
+    .Text("Toggle Theme")
+    .Danger()
+    .OnClicked((s, e) => {
+        switch (BootstrapColors.CurrentTheme)
+        {
+            case AppTheme.Dark:
+                BootstrapColors.CurrentTheme = AppTheme.Light;
+                break;
+            case AppTheme.Light:
+                BootstrapColors.CurrentTheme = AppTheme.Dark;
+                break;
+        }
+    });
+```
+Anything inside BootstrapColors.xaml binding to DynamicResource will be adjusted on the fly.
+You can add more resource dictionaries to your app and bind them to any of the bootstrap colors.
+
+You may also change available bootstrap colors on the fly as well.
+```
+// change page color to Pink
+var pinkPage = new Button()
+    .Text("Set Page Color To Pink")
+    .Info()
+    .OnClicked((s,e) => {
+        BootstrapColors.PageColor = Colors.Pink;
+    });
+```
+All available colors that can be changed on the fly are accessible via C# BootstrapColors class.
 
 ### Accordion Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.

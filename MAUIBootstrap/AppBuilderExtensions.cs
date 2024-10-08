@@ -26,15 +26,3 @@ public static class AppBuilderExtensions
         return builder;
     }
 }
-
-public static class Bootstrap
-{
-    public static ResourceDictionary Styles()
-    {
-        return new ResourceDictionary()
-        {
-            new Style<Button>(e => e.FontFamily(DynamicConstants.Instance.RegularFont)),
-            new Style<Label>(e => e.FontFamily(DynamicConstants.Instance.RegularFont))
-        };
-    }
-}

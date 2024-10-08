@@ -1,14 +1,18 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-
 namespace MAUIBootstrap;
 
-public partial class DynamicConstants : ObservableObject
+public class DynamicConstants
 {
     public static DynamicConstants Instance = new(); 
 
-    [ObservableProperty]
-    public string regularFont = "";
+    public string RegularFont
+    {
+        get => ResourceHelpers.GetString(nameof(RegularFont)); 
+        set => ResourceHelpers.SetString(nameof(RegularFont), value); 
+    }
 
-    [ObservableProperty]
-    public string boldFont = "";
+    public string BoldFont
+    {
+        get => ResourceHelpers.GetString(nameof(BoldFont)); 
+        set => ResourceHelpers.SetString(nameof(BoldFont), value); 
+    }
 }

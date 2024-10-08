@@ -1,4 +1,5 @@
 using FmgLib.MauiMarkup;
+using MAUIBootstrap;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
 
@@ -53,6 +54,32 @@ public class ControlsPage : ContentPage
 								.OnClicked((s, e) => {
 									Navigation.PushAsync(new ButtonStylesDemoPage());
 								}),
+							new Button()
+								.Text("Cards")
+								.Primary()
+								.OnClicked((s, e) => {
+									Navigation.PushAsync(new CardStylesDemoPage());
+								}),
+							new Button()
+								.Text("Toggle Theme")
+								.Danger()
+								.OnClicked((s, e) => {
+									switch (BootstrapColors.CurrentTheme)
+									{
+										case AppTheme.Dark:
+											BootstrapColors.CurrentTheme = AppTheme.Light;
+											break;
+										case AppTheme.Light:
+											BootstrapColors.CurrentTheme = AppTheme.Dark;
+											break;
+									}
+                                }),
+							new Button()
+								.Text("Set Page Color To Pink")
+								.Info()
+								.OnClicked((s,e) => {
+									BootstrapColors.PageColor = Colors.Pink;
+								})
 						])));
-	}
+    }
 }
