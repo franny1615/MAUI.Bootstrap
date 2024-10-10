@@ -257,4 +257,36 @@ new CheckboxControl()
         }
     });
 
+// Applying Material Icon to Button
+// Color is optional
+// when not provided, it will be auto themed to black and white based on theme
+var materialIconButton = new Button()
+    .MaterialIcon(MaterialIcon.Close, 40, Colors.Purple);
+
+// when using Button as a carousel next button
+var next = new Button()
+    .CarouselNext();
+
+// when using Button as a carousel previous button
+var previous = new Button()
+    .CarouselPrevious();
+```
+
+### Carousel API
+```
+// when you want default bootstrap styling of CarouselView control
+// optional can provide swipe boolean.
+var carousel = new CarouselView()
+    .Carousel();
+```
+
+### Label API
+```
+// when using as carousel title, can use
+var label = new Label().Text("My Title")
+    .CarouselCaptionTitle();
+
+// when using as carousel caption, can use
+var label = new Label().Text("My Title")
+    .CarouselCaptionText();
 ```

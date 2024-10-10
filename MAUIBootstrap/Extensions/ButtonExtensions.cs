@@ -217,5 +217,53 @@ public static class ButtonExtensions
         }));
         return radioButton;
     }
+
+    public static Button MaterialIcon(
+        this Button button, 
+        string icon,
+        int size,
+        Color? color = null)
+    {
+        var source = new FontImageSource()
+                .FontFamily(nameof(MaterialIcon))
+                .Glyph(icon)
+                .Size(size);
+        if (color != null)
+        {
+            source.Color(color);
+        }
+        else 
+        {
+            source.SetDynamicResource(
+                FontImageSource.ColorProperty, 
+                nameof(BootstrapColors.DefaultButtonColoring));
+        }
+
+        button
+            .BackgroundColor(Colors.Transparent)
+            .ImageSource(source);
+        return button;
+    }
+
+    public static Button CarouselNext(this Button button)
+    {
+        button
+            .MaterialIcon(
+                MAUIBootstrap.MaterialIcon.Chevron_right, 
+                40, 
+                Colors.White)
+			.VerticalOptions(LayoutOptions.Fill)
+			.AlignRight();
+        return button;
+    }
+
+    public static Button CarouselPrevious(this Button button)
+    {
+        button
+            .MaterialIcon(MAUIBootstrap.MaterialIcon.Chevron_left, 40, Colors.White)
+			.VerticalOptions(LayoutOptions.Fill)
+			.AlignLeft();
+        return button;
+    }
     #endregion
 }

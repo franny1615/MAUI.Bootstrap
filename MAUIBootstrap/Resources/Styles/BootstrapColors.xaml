@@ -42,4 +42,8 @@
     <Color x:Key="TextColor">Black</Color>
     <Color x:Key="TextColorLight">Black</Color>
     <Color x:Key="TextColorDark">White</Color>
+
+    <Color x:Key="DefaultButtonColoring">Black</Color>
+    <Color x:Key="DefaultButtonColoringLight">Black</Color>
+    <Color x:Key="DefaultButtonColoringDark">White</Color>
 </ResourceDictionary>

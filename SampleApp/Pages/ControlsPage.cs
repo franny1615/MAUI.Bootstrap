@@ -61,6 +61,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new CardStylesDemoPage());
 								}),
 							new Button()
+								.Text("Carousels")
+								.Primary()
+								.OnClicked((s, e) => {
+									Navigation.PushAsync(new CarouselStylesDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {

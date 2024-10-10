@@ -15,12 +15,14 @@ public static class BootstrapColors
                     PageTitleColor = PageTitleColorDark;
                     NavigationBarColor = NavigationBarColorDark;
                     TextColor = TextColorDark;
+                    DefaultButtonColoring = DefaultButtonColoringDark;
                     break;
                 case AppTheme.Light:
                     PageColor = PageColorLight;
                     PageTitleColor = PageTitleColorLight;
                     NavigationBarColor = NavigationBarColorLight;
                     TextColor = TextColorLight;
+                    DefaultButtonColoring = DefaultButtonColoringLight;
                     break;
             }
         }
@@ -169,6 +171,21 @@ public static class BootstrapColors
     {
         get => ResourceHelpers.GetColor(nameof(TextColorDark)); 
         set => ResourceHelpers.SetColor(nameof(TextColorDark), value); 
+    }
+    public static Color DefaultButtonColoring
+    {
+        get => ResourceHelpers.GetColor(nameof(DefaultButtonColoring)); 
+        set => ResourceHelpers.SetColor(nameof(DefaultButtonColoring), value); 
+    }
+    public static Color DefaultButtonColoringLight
+    {
+        get => ResourceHelpers.GetColor(nameof(DefaultButtonColoringLight)); 
+        set => ResourceHelpers.SetColor(nameof(DefaultButtonColoringLight), value); 
+    }
+    public static Color DefaultButtonColoringDark
+    {
+        get => ResourceHelpers.GetColor(nameof(DefaultButtonColoringDark)); 
+        set => ResourceHelpers.SetColor(nameof(DefaultButtonColoringDark), value); 
     }
 }
 
