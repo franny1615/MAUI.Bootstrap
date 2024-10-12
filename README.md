@@ -290,3 +290,31 @@ var label = new Label().Text("My Title")
 var label = new Label().Text("My Title")
     .CarouselCaptionText();
 ```
+
+### Collapse API
+```
+// Against any of the following layouts 
+StackLayout
+Grid
+FlexLayout
+VerticalStackLayout
+HorizontalStackLayout
+Grid
+FlexLayout
+AbsoluteLayout
+// you can use
+.Collapse(openHeight); // will animate in/out the openHeight
+// you can use
+.CollapseWidth(openWidth); // will animate in/out the openWidth
+
+// Against anything that inherits from View class
+Collapse.CollapseAnimate(
+    myView,
+    openHeight
+); // to animate vertical collapse
+// similarly
+Collapse.CollapseWidthAnimate(
+    myView,
+    openWidth
+); // to animate width collapse
+```

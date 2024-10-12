@@ -52,49 +52,49 @@ public static class CollapseExtensions
 
     public static StackLayout CollapseWidth(
         this StackLayout layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 
     public static VerticalStackLayout CollapseWidth(
         this VerticalStackLayout layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 
     public static HorizontalStackLayout CollapseWidth(
         this HorizontalStackLayout layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 
     public static Grid CollapseWidth(
         this Grid layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 
     public static FlexLayout CollapseWidth(
         this FlexLayout layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 
     public static AbsoluteLayout CollapseWidth(
         this AbsoluteLayout layout,
-        double openHeight = 0)
+        double openWidth = 0)
     {
-        Extensions.Collapse.CollapseWidthAnimate(layout, openHeight);
+        Extensions.Collapse.CollapseWidthAnimate(layout, openWidth);
         return layout;
     }
 }
