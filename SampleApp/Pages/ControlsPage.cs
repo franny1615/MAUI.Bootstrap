@@ -67,6 +67,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new CarouselStylesDemoPage());
 								}),
 							new Button()
+								.Text("Collapse")
+								.Primary()
+								.OnClicked((s,e) => {
+									Navigation.PushAsync(new CollapseStylesDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
