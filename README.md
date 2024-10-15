@@ -318,3 +318,36 @@ Collapse.CollapseWidthAnimate(
     openWidth
 ); // to animate width collapse
 ```
+
+### EntryControl
+Simple wrapper around entry, contains IsBorderless property. 
+```
+var entry = new EntryControl()
+    .IsBorderless(true);
+```  
+
+### EditorControl
+Simple wrapper around editor, contains IsBorderless property.
+```
+var editor = new EditorControl()
+    .IsBorderless(true);
+```
+
+### Dropdown
+A wrapper around Border that contains logic to create a vertical list of items.
+Can be used for simple item selection.
+```
+var dropdown = new Dropdown()
+    .Items([
+        new DropdownItem
+        {
+            MaterialIcon = MaterialIcon.Close,
+            TranslateKey = "MyTranslatableKey"
+        }
+    ])
+    .OnItemSelected((s,e) => {
+        if (e.SelectedItem != null) {
+            // do work with e.SelectedItem
+        }
+    });
+``` 
