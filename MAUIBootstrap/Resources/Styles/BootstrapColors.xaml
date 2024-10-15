@@ -46,4 +46,8 @@
     <Color x:Key="DefaultButtonColoring">Black</Color>
     <Color x:Key="DefaultButtonColoringLight">Black</Color>
     <Color x:Key="DefaultButtonColoringDark">White</Color>
+
+    <Color x:Key="DropdownBG">White</Color>
+    <Color x:Key="DropdownBGLight">White</Color>
+    <Color x:Key="DropdownBGDark">#363b3f</Color>
 </ResourceDictionary>

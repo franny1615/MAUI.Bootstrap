@@ -7,12 +7,12 @@
         <Setter Property="Color" Value="{DynamicResource Primary}" />
     </Style>
 
-    <Style TargetType="IndicatorView">
+    <Style TargetType="IndicatorView" ApplyToDerivedTypes="True">
         <Setter Property="IndicatorColor" Value="{DynamicResource Secondary}"/>
         <Setter Property="SelectedIndicatorColor" Value="{DynamicResource Primary}"/>
     </Style>
 
-    <Style TargetType="CheckBox">
+    <Style TargetType="CheckBox" ApplyToDerivedTypes="True">
         <Setter Property="Color" Value="{DynamicResource Primary}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
@@ -30,7 +30,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="DatePicker">
+    <Style TargetType="DatePicker" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}"/>
@@ -51,12 +51,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Editor">
+    <Style TargetType="Editor" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}"/>
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="PlaceholderColor" Value="{DynamicResource Secondary}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -66,6 +66,7 @@
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="{DynamicResource Secondary}" />
+                            <Setter Property="PlaceholderColor" Value="{DynamicResource Secondary}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -73,12 +74,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Entry">
+    <Style TargetType="Entry" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}"/>
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="PlaceholderColor" Value="{DynamicResource Secondary}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -88,6 +89,7 @@
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="{DynamicResource Secondary}" />
+                            <Setter Property="PlaceholderColor" Value="{DynamicResource Secondary}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -95,13 +97,13 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Frame">
+    <Style TargetType="Frame" ApplyToDerivedTypes="True">
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="BorderColor" Value="{DynamicResource Secondary}" />
         <Setter Property="CornerRadius" Value="8" />
     </Style>
 
-    <Style TargetType="ImageButton">
+    <Style TargetType="ImageButton" ApplyToDerivedTypes="True">
         <Setter Property="Opacity" Value="1" />
         <Setter Property="BorderColor" Value="Transparent"/>
         <Setter Property="BorderWidth" Value="0"/>
@@ -123,7 +125,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Label">
+    <Style TargetType="Label" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}" />
@@ -142,16 +144,16 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Span">
+    <Style TargetType="Span" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
     </Style>
 
-    <Style TargetType="ListView">
+    <Style TargetType="ListView" ApplyToDerivedTypes="True">
         <Setter Property="SeparatorColor" Value="{DynamicResource Secondary}" />
         <Setter Property="RefreshControlColor" Value="{DynamicResource Primary}" />
     </Style>
 
-    <Style TargetType="Picker">
+    <Style TargetType="Picker" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="TitleColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
@@ -174,7 +176,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ProgressBar">
+    <Style TargetType="ProgressBar" ApplyToDerivedTypes="True">
         <Setter Property="ProgressColor" Value="{DynamicResource Primary}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -190,7 +192,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="RadioButton">
+    <Style TargetType="RadioButton" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}"/>
@@ -211,18 +213,18 @@
         </Setter>
     </Style>
 
-    <Style TargetType="RefreshView">
+    <Style TargetType="RefreshView" ApplyToDerivedTypes="True">
         <Setter Property="RefreshColor" Value="{DynamicResource Primary}" />
     </Style>
 
-    <Style TargetType="Shadow">
+    <Style TargetType="Shadow" ApplyToDerivedTypes="True">
         <Setter Property="Radius" Value="15" />
         <Setter Property="Opacity" Value="0.5" />
         <Setter Property="Brush" Value="{DynamicResource Secondary}" />
         <Setter Property="Offset" Value="10,10" />
     </Style>
 
-    <Style TargetType="Slider">
+    <Style TargetType="Slider" ApplyToDerivedTypes="True">
         <Setter Property="MinimumTrackColor" Value="{DynamicResource Primary}" />
         <Setter Property="MaximumTrackColor" Value="{DynamicResource Secondary}" />
         <Setter Property="ThumbColor" Value="{DynamicResource Primary}" />
@@ -242,11 +244,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="SwipeItem">
+    <Style TargetType="SwipeItem" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="{DynamicResource PageColor}" />
     </Style>
 
-    <Style TargetType="Switch">
+    <Style TargetType="Switch" ApplyToDerivedTypes="True">
         <Setter Property="OnColor" Value="{DynamicResource Primary}" />
         <Setter Property="ThumbColor" Value="{DynamicResource Primary}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -275,7 +277,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="TimePicker">
+    <Style TargetType="TimePicker" ApplyToDerivedTypes="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="FontFamily" Value="{DynamicResource RegularFont}"/>
@@ -314,13 +316,13 @@
         <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource Secondary}" />
     </Style>
 
-    <Style TargetType="NavigationPage">
+    <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
         <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
         <Setter Property="BarTextColor" Value="{DynamicResource PageTitleColor}" />
         <Setter Property="IconColor" Value="{DynamicResource PageTitleColor}" />
     </Style>
 
-    <Style TargetType="TabbedPage">
+    <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
         <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
         <Setter Property="BarTextColor" Value="{DynamicResource PageTitleColor}" />
         <Setter Property="UnselectedTabColor" Value="{DynamicResource Secondary}" />

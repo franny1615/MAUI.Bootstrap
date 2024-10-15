@@ -16,6 +16,7 @@ public static class BootstrapColors
                     NavigationBarColor = NavigationBarColorDark;
                     TextColor = TextColorDark;
                     DefaultButtonColoring = DefaultButtonColoringDark;
+                    DropdownBG = DropdownBGDark;
                     break;
                 case AppTheme.Light:
                     PageColor = PageColorLight;
@@ -23,6 +24,7 @@ public static class BootstrapColors
                     NavigationBarColor = NavigationBarColorLight;
                     TextColor = TextColorLight;
                     DefaultButtonColoring = DefaultButtonColoringLight;
+                    DropdownBG = DropdownBGLight;
                     break;
             }
         }
@@ -186,6 +188,21 @@ public static class BootstrapColors
     {
         get => ResourceHelpers.GetColor(nameof(DefaultButtonColoringDark)); 
         set => ResourceHelpers.SetColor(nameof(DefaultButtonColoringDark), value); 
+    }
+    public static Color DropdownBG
+    {
+        get => ResourceHelpers.GetColor(nameof(DropdownBG)); 
+        set => ResourceHelpers.SetColor(nameof(DropdownBG), value); 
+    }
+    public static Color DropdownBGLight
+    {
+        get => ResourceHelpers.GetColor(nameof(DropdownBGLight)); 
+        set => ResourceHelpers.SetColor(nameof(DropdownBGLight), value); 
+    }
+    public static Color DropdownBGDark
+    {
+        get => ResourceHelpers.GetColor(nameof(DropdownBGDark)); 
+        set => ResourceHelpers.SetColor(nameof(DropdownBGDark), value); 
     }
 }
 

@@ -73,6 +73,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new CollapseStylesDemoPage());
 								}),
 							new Button()
+								.Text("Dropdown")
+								.Primary()
+								.OnClicked((s, e) => {
+									Navigation.PushAsync(new DropdownControlDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
