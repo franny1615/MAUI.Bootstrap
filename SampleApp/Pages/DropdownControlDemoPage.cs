@@ -47,7 +47,7 @@ public class DropdownControlDemoPage : ContentPage
 				.Children([
 					new Label()
 						.Text("Dropdown w/ Popup")
-						.FontFamily(nameof(DynamicConstants.BoldFont))
+						.FontFamily(DynamicConstants.Instance.BoldFont)
 						.FontSize(16)
 						.Center()
 						.TextColor(Colors.White)
@@ -60,7 +60,7 @@ public class DropdownControlDemoPage : ContentPage
 						.OnClicked((s,e) => {
 							var popup = new Popup();
 							popup.CanBeDismissedByTappingOutsideOfPopup = true;
-							// popup.Anchor = _DropdownButton;
+							popup.Anchor = _DropdownButton;
 							popup.Color = Colors.Transparent;
 							popup.VerticalOptions = Microsoft.Maui.Primitives.LayoutAlignment.End;
 							popup.Content = new Dropdown() 
@@ -100,7 +100,7 @@ public class DropdownControlDemoPage : ContentPage
 				.Children([
 					new Label()
 						.Text("Dropdown w/ Grid")
-						.FontFamily(nameof(DynamicConstants.BoldFont))
+						.FontFamily(DynamicConstants.Instance.BoldFont)
 						.FontSize(16)
 						.Center()
 						.TextColor(Colors.White)
