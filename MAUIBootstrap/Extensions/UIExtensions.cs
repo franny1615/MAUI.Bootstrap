@@ -32,6 +32,16 @@ public static class UIExtensions
         return boxView;
     }
 
+    public static BoxView Divider(this BoxView boxView)
+    {
+        boxView
+            .HeightRequest(1)
+            .Color(BootstrapColors.Secondary)
+            .BackgroundColor(BootstrapColors.Secondary)
+            .FillHorizontal();
+        return boxView;
+    }
+
     public static VerticalStackLayout PrimaryAlert(
         this VerticalStackLayout layout,
         View content,
@@ -98,5 +108,29 @@ public static class UIExtensions
             .Aspect(Aspect.Fill)
             .HeightRequest(180);
         return image;
+    }
+}
+
+public static class UI 
+{
+    public static void Active(View view)
+    {
+        if (view.StyleClass != null && view.StyleClass.Contains("active"))
+        {
+            view.BackgroundColor(Colors.Transparent);
+            view.StyleClass = new List<string>
+            {
+                BootstrapColors.CurrentTheme == AppTheme.Dark ? 
+                    "notactivedark" : "notactive"
+            };
+        }
+        else
+        {
+            view.BackgroundColor(BootstrapColors.Primary);
+            view.StyleClass = new List<string>
+            {
+                "active"
+            };
+        }
     }
 }

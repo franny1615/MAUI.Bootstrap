@@ -79,6 +79,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new DropdownControlDemoPage());
 								}),
 							new Button()
+								.Text("List Groups")
+								.Primary()
+								.OnClicked((s,e) => {
+									Navigation.PushAsync(new ListGroupStylesDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
