@@ -351,3 +351,23 @@ var dropdown = new Dropdown()
         }
     });
 ``` 
+
+### List Group
+```
+// Combine 
+.ListGroup() 
+// fluent method on Border
+// with 
+.Divider() 
+// on BoxView
+// in order to get list group shell
+
+// then use the 
+UI.Active(anyView) 
+// on anything whose parent is View class
+// in order to get active/non active bootstrap style states. 
+
+// an finally use 
+.IsEnabled(bool)
+// on parent control for the row in order to get disabled state.  
+```
