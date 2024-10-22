@@ -328,4 +328,52 @@
         <Setter Property="UnselectedTabColor" Value="{DynamicResource Secondary}" />
         <Setter Property="SelectedTabColor" Value="{DynamicResource Primary}" />
     </Style>
+
+    <ControlTemplate x:Key="RadioButtonTemplate">
+        <Grid ColumnDefinitions="Auto,*" Padding="8">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter TargetName="check"
+                                        Property="Opacity"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter TargetName="check"
+                                        Property="Opacity"
+                                        Value="0" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+            <Grid 
+                Grid.Column="0"
+                Margin="0,0,4,0"
+                WidthRequest="18"
+                HeightRequest="18"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Ellipse 
+                    Stroke="{DynamicResource Primary}"
+                    Fill="Transparent"
+                    WidthRequest="16"
+                    HeightRequest="16"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Ellipse 
+                    x:Name="check"
+                    Fill="{DynamicResource Primary}"
+                    WidthRequest="8"
+                    HeightRequest="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </Grid>
+            <ContentPresenter Grid.Column="1" VerticalOptions="Center" />
+        </Grid>
+    </ControlTemplate>
 </ResourceDictionary>

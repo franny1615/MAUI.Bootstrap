@@ -1,9 +1,13 @@
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using FmgLib.MauiMarkup;
 using MAUIBootstrap;
+using MAUIBootstrap.Controls;
 using MAUIBootstrap.CSS;
 using MAUIBootstrap.Extensions;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Controls.StyleSheets;
+using SampleApp.ViewModels;
 
 namespace SampleApp.Pages;
 
@@ -76,8 +80,10 @@ public class ListGroupStylesDemoPage : ContentPage
 		.ListGroup();
 	#endregion
 
-	public ListGroupStylesDemoPage()
+	public ListGroupStylesDemoPage(ListGroupViewModel viewModel)
 	{
+		BindingContext = viewModel;
+
 		using (var reader = new StringReader(BootstrapCSS.Styles))
         {
             Resources.Add(StyleSheet.FromReader(reader));
@@ -165,14 +171,311 @@ public class ListGroupStylesDemoPage : ContentPage
 		]));
 		#endregion
 
+		#region HORIZONTAL
+		var horizontalListGroup = new Border()
+			.ListGroup()
+			.Content(new Grid()
+				.ColumnDefinitions(e => e.Star().Auto().Star().Auto().Star())
+				.Children([
+					new Label()
+						.Text("Item 1")
+						.Padding(4)
+						.Column(0)
+						.Center(),
+					new BoxView().VerticalDivider().Column(1),
+					new Label()
+						.Text("Item 2")
+						.Padding(4)
+						.Column(2)
+						.Center(),
+					new BoxView().VerticalDivider().Column(3),
+					new Label()
+						.Text("Item 3")
+						.Padding(4)
+						.Column(4)
+						.Center(),
+				]));
+		#endregion
+
+		#region VERIANTS
+		var primaryVariant = new Label()
+			.Text("Primary variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		primaryVariant.GestureRecognizers([
+			new TapGestureRecognizer()
+				.NumberOfTapsRequired(1)
+				.OnTapped((s,e) => {
+					UI.PrimarySubtle(primaryVariant);
+				})
+		]);
+		UI.PrimarySubtle(primaryVariant);
+		var secondaryVariant = new Label()
+			.Text("Secondary variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.SecondarySubtle(secondaryVariant);
+		var successVariant = new Label()
+			.Text("success variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.SuccessSubtle(successVariant);
+		var warningVariant = new Label()
+			.Text("Warning variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.WarningSubtle(warningVariant);
+		var dangerVariant = new Label()
+			.Text("Danger variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.DangerSubtle(dangerVariant);
+		var infoVariant = new Label()
+			.Text("Info variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.InfoSubtle(infoVariant);
+		var lightVariant = new Label()
+			.Text("Light variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.LightSubtle(lightVariant);
+		var darkVariant = new Label()
+			.Text("Dark variant style")
+			.FillBothDirections()
+			.VerticalTextAlignment(TextAlignment.Center)
+			.HorizontalTextAlignment(TextAlignment.Center)
+			.Padding(8);
+		UI.DarkSubtle(darkVariant);
+		var variantListGroup = new Border()
+			.ListGroup()
+			.Content(new VerticalStackLayout()
+				.Children([
+					primaryVariant,
+					new BoxView().Divider(),
+					secondaryVariant,
+					new BoxView().Divider(),
+					successVariant,
+					new BoxView().Divider(),
+					warningVariant,
+					new BoxView().Divider(),
+					dangerVariant,
+					new BoxView().Divider(),
+					infoVariant,
+					new BoxView().Divider(),
+					lightVariant,
+					new BoxView().Divider(),
+					darkVariant,
+				]));
+		#endregion
+
+		#region WITH BADGES
+		var badgesInListGroups = new Border()
+			.ListGroup()
+			.Content(new VerticalStackLayout()
+				.Children([
+					new Grid()
+						.ColumnDefinitions(e => e.Star().Auto())
+						.Children([
+							new Label()
+								.Text("Item 1")
+								.Column(0)
+								.Padding(4)
+								.VerticalTextAlignment(TextAlignment.Center)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)),
+							new BadgeControl()
+								.Column(1)
+								.Text("14")
+								.TextSize(13)
+								.Primary()
+								.Rounded()
+								.Margin(4)
+						]),
+					new BoxView().Divider(),
+					new Grid()
+						.ColumnDefinitions(e => e.Star().Auto())
+						.Children([
+							new Label()
+								.Text("Item 2")
+								.Column(0)
+								.Padding(4)
+								.VerticalTextAlignment(TextAlignment.Center)
+								.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance)),
+							new BadgeControl()
+								.Column(1)
+								.Text("2")
+								.TextSize(13)
+								.Primary()
+								.Rounded()
+								.Margin(4)
+						]),
+				])
+			);
+		#endregion
+
+		#region Radios in List Group
+		var radioListGroups = new Border()
+			.ListGroup()
+			.Content(new VerticalStackLayout()
+				.Children([
+					new RadioButton()
+						.Bootstrap()
+						.Content("Item 1"),
+					new BoxView().Divider(),
+					new RadioButton()
+						.Bootstrap()
+						.Content("Item 2"),
+					new BoxView().Divider(),
+					new RadioButton()
+						.Bootstrap()
+						.Content("Item 3"),
+				]));
+		#endregion
+
+		#region Checkboxes in List Group
+		var checkboxListGroup = new Border()
+			.ListGroup()
+			.Content(new VerticalStackLayout()
+				.Children([
+					new Grid()
+						.ColumnDefinitions(e => e.Auto().Star())
+						.Children([
+							new CheckBox().Assign(out var chck1),
+							new Label()
+								.Column(1)
+								.Text("Item 1")
+								.VerticalTextAlignment(TextAlignment.Center)
+								.FillBothDirections()
+								.GestureRecognizers([
+									new TapGestureRecognizer()
+										.NumberOfTapsRequired(1)
+										.OnTapped((s,e) => {
+											chck1.IsChecked = !chck1.IsChecked;
+										})
+								])
+						]),
+					new BoxView().Divider(),
+					new Grid()
+						.ColumnDefinitions(e => e.Auto().Star())
+						.Children([
+							new CheckBox().Assign(out var chck2),
+							new Label()
+								.Column(1)
+								.Text("Item 2")
+								.VerticalTextAlignment(TextAlignment.Center)
+								.FillBothDirections()
+								.GestureRecognizers([
+									new TapGestureRecognizer()
+										.NumberOfTapsRequired(1)
+										.OnTapped((s,e) => {
+											chck2.IsChecked = !chck2.IsChecked;
+										})
+								])
+						]),
+					new BoxView().Divider(),
+					new Grid()
+						.ColumnDefinitions(e => e.Auto().Star())
+						.Children([
+							new CheckBox().Assign(out var chck3),
+							new Label()
+								.Column(1)
+								.Text("Item 2")
+								.VerticalTextAlignment(TextAlignment.Center)
+								.FillBothDirections()
+								.GestureRecognizers([
+									new TapGestureRecognizer()
+										.NumberOfTapsRequired(1)
+										.OnTapped((s,e) => {
+											chck3.IsChecked = !chck3.IsChecked;
+										})
+								])
+						]),
+				]));
+		#endregion
+
+		#region Collection View Example
+		var collectionView = new CollectionView()
+			.ItemsSource(e => e.Path(nameof(ListGroupViewModel.Items)).Source(BindingContext))
+			.ItemTemplate(new DataTemplate(() => {
+				var view = new ListGroupItemView();
+				view.SetBinding(BindingContextProperty, ".");
+				return view;
+			}));
+		var collectionViewListGroup = new Border()
+			.ListGroup()
+			.Content(collectionView);
+		#endregion
+
 		this
 			.Title("List Groups")
-			.Content(new VerticalStackLayout()
-				.Padding(16)
-				.Children([
-					_Border,
-					new BoxView().Divider().Margin(16),
-					_BorderComplex
-				]));
+			.Content(new ScrollView()
+				.Content(new VerticalStackLayout()
+					.Padding(16)
+					.Children([
+						_Border,
+						new BoxView().Divider().Margin(16),
+						_BorderComplex,
+						new BoxView().Divider().Margin(16),
+						horizontalListGroup,
+						new BoxView().Divider().Margin(16),
+						variantListGroup,
+						new BoxView().Divider().Margin(16),
+						badgesInListGroups,
+						new BoxView().Divider().Margin(16),
+						radioListGroups,
+						new BoxView().Divider().Margin(16),
+						checkboxListGroup,
+						new BoxView().Divider().Margin(16),
+						collectionViewListGroup
+					])
+				)
+			);
 	}
+}
+
+public class ListGroupItemView : VerticalStackLayout
+{
+    private readonly Label _Text = new Label()
+		.Padding(8)
+		.FillBothDirections()
+		.VerticalTextAlignment(TextAlignment.Center)
+		.FontFamily(e => e.Path(nameof(DynamicConstants.BoldFont)).Source(DynamicConstants.Instance));
+	private readonly BoxView _Divider = new BoxView()
+		.Divider();
+
+	public ListGroupItemView()
+	{
+		this.Children([
+			_Text,
+			_Divider
+		]);
+	}
+
+    protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        base.OnPropertyChanged(propertyName);
+		if (propertyName == BindingContextProperty.PropertyName && 
+			BindingContext is ListGroupItem item)
+		{
+			_Text.Text = $"{item.Index} {item.Text}";
+			if (item.Index == 3)
+			{
+				_Divider.IsVisible(false);
+			}
+		}
+    }
 }

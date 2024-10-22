@@ -18,6 +18,24 @@
     <Color x:Key="Dark">#212529</Color>
     <Color x:Key="Link">#0d6efd</Color>
 
+    <Color x:Key="PrimaryTextEmphasis">#052c65</Color>
+    <Color x:Key="SecondaryTextEmphasis">#2b2f32</Color>
+    <Color x:Key="SuccessTextEmphasis">#0a3622</Color>
+    <Color x:Key="WarningTextEmphasis">#664d03</Color>
+    <Color x:Key="DangerTextEmphasis">#58151c</Color>
+    <Color x:Key="InfoTextEmphasis">#055160</Color>
+    <Color x:Key="LightTextEmphasis">#495057</Color>
+    <Color x:Key="DarkTextEmphasis">#495057</Color>
+
+    <Color x:Key="PrimarySubtle">#cfe2ff</Color>
+    <Color x:Key="SecondarySubtle">#e2e3e5</Color>
+    <Color x:Key="SuccessSubtle">#d1e7dd</Color>
+    <Color x:Key="WarningSubtle">#fff3cd</Color>
+    <Color x:Key="DangerSubtle">#f8d7da</Color>
+    <Color x:Key="InfoSubtle">#cff4fc</Color>
+    <Color x:Key="LightSubtle">#fcfcfd</Color>
+    <Color x:Key="DarkSubtle">#ced4da</Color>
+
     <Color x:Key="PrimaryShade">#07377f</Color>
     <Color x:Key="SecondaryShade">#363b3f</Color>
     <Color x:Key="SuccessShade">#0d442a</Color>
@@ -50,4 +68,8 @@
     <Color x:Key="DropdownBG">White</Color>
     <Color x:Key="DropdownBGLight">White</Color>
     <Color x:Key="DropdownBGDark">#363b3f</Color>
+
+    <Color x:Key="ModalColor">White</Color>
+    <Color x:Key="ModalColorLight">White</Color>
+    <Color x:Key="ModalColorDark">#363b3f</Color>
 </ResourceDictionary>

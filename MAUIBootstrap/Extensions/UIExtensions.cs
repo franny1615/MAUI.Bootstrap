@@ -42,6 +42,16 @@ public static class UIExtensions
         return boxView;
     }
 
+    public static BoxView VerticalDivider(this BoxView boxView)
+    {
+        boxView
+            .WidthRequest(1)
+            .Color(BootstrapColors.Secondary)
+            .BackgroundColor(BootstrapColors.Secondary)
+            .FillVertical();
+        return boxView;
+    }
+
     public static VerticalStackLayout PrimaryAlert(
         this VerticalStackLayout layout,
         View content,
@@ -117,11 +127,13 @@ public static class UI
     {
         if (view.StyleClass != null && view.StyleClass.Contains("active"))
         {
+            var noStyle = BootstrapColors.CurrentTheme == AppTheme.Dark ? 
+                    "notactivedark" : "notactive";
             view.BackgroundColor(Colors.Transparent);
             view.StyleClass = new List<string>
             {
-                BootstrapColors.CurrentTheme == AppTheme.Dark ? 
-                    "notactivedark" : "notactive"
+                noStyle
+                
             };
         }
         else
@@ -131,6 +143,44 @@ public static class UI
             {
                 "active"
             };
+        }
+    }
+
+    public static void PrimarySubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.PrimarySubtle, "primary");
+    public static void SecondarySubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.SecondarySubtle, "secondary");
+    public static void SuccessSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.SuccessSubtle, "success");
+    public static void WarningSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.WarningSubtle, "warning");
+    public static void DangerSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.DangerSubtle, "danger");
+    public static void InfoSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.InfoSubtle, "info");
+    public static void LightSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.LightSubtle, "light");
+    public static void DarkSubtle(View view)
+        => ApplySubtleStyle(view, BootstrapColors.DarkSubtle, "dark");
+    private static void ApplySubtleStyle(
+        View view,
+        Color color,
+        string cssClass)
+    {
+        if (view.StyleClass != null && view.StyleClass.Contains($"{cssClass}-text-emphasis")) 
+        {
+            var noStyle = BootstrapColors.CurrentTheme == AppTheme.Dark ? 
+                    "notactivedark" : "notactive";
+            view.BackgroundColor(Colors.Transparent);
+            view.StyleClass = new List<string>
+            {
+                noStyle
+            };
+        }
+        else 
+        {
+            view.StyleClass = new List<string> { $"{cssClass}-text-emphasis" };
+            view.BackgroundColor(color);
         }
     }
 }

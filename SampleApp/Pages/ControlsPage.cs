@@ -2,6 +2,7 @@ using FmgLib.MauiMarkup;
 using MAUIBootstrap;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
+using SampleApp.ViewModels;
 
 namespace SampleApp.Pages;
 
@@ -82,7 +83,15 @@ public class ControlsPage : ContentPage
 								.Text("List Groups")
 								.Primary()
 								.OnClicked((s,e) => {
-									Navigation.PushAsync(new ListGroupStylesDemoPage());
+									Navigation.PushAsync(
+										new ListGroupStylesDemoPage(new ListGroupViewModel())
+									);
+								}),
+							new Button()
+								.Text("Modals")
+								.Primary()
+								.OnClicked((s,e) => {
+									Navigation.PushAsync(new ModalDemoPage());
 								}),
 							new Button()
 								.Text("Toggle Theme")

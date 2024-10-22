@@ -17,6 +17,7 @@ public static class BootstrapColors
                     TextColor = TextColorDark;
                     DefaultButtonColoring = DefaultButtonColoringDark;
                     DropdownBG = DropdownBGDark;
+                    ModalColor = ModalColorDark;
                     break;
                 case AppTheme.Light:
                     PageColor = PageColorLight;
@@ -25,6 +26,7 @@ public static class BootstrapColors
                     TextColor = TextColorLight;
                     DefaultButtonColoring = DefaultButtonColoringLight;
                     DropdownBG = DropdownBGLight;
+                    ModalColor = ModalColorLight;
                     break;
             }
         }
@@ -203,6 +205,101 @@ public static class BootstrapColors
     {
         get => ResourceHelpers.GetColor(nameof(DropdownBGDark)); 
         set => ResourceHelpers.SetColor(nameof(DropdownBGDark), value); 
+    }
+    public static Color PrimaryTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(PrimaryTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(PrimaryTextEmphasis), value); 
+    }
+    public static Color SecondaryTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(SecondaryTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(SecondaryTextEmphasis), value); 
+    }
+    public static Color SuccessTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(SuccessTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(SuccessTextEmphasis), value); 
+    }
+    public static Color WarningTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(WarningTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(WarningTextEmphasis), value); 
+    }
+    public static Color DangerTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(DangerTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(DangerTextEmphasis), value); 
+    }
+    public static Color InfoTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(InfoTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(InfoTextEmphasis), value); 
+    }
+    public static Color LightTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(LightTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(LightTextEmphasis), value); 
+    }
+    public static Color DarkTextEmphasis
+    { 
+        get => ResourceHelpers.GetColor(nameof(DarkTextEmphasis)); 
+        set => ResourceHelpers.SetColor(nameof(DarkTextEmphasis), value); 
+    }
+    public static Color PrimarySubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(PrimarySubtle)); 
+        set => ResourceHelpers.SetColor(nameof(PrimarySubtle), value); 
+    }
+    public static Color SecondarySubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(SecondarySubtle)); 
+        set => ResourceHelpers.SetColor(nameof(SecondarySubtle), value); 
+    }
+    public static Color SuccessSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(SuccessSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(SuccessSubtle), value); 
+    }
+    public static Color WarningSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(WarningSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(WarningSubtle), value); 
+    }
+    public static Color DangerSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(DangerSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(DangerSubtle), value); 
+    }
+    public static Color InfoSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(InfoSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(InfoSubtle), value); 
+    }
+    public static Color LightSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(LightSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(LightSubtle), value); 
+    }
+    public static Color DarkSubtle
+    { 
+        get => ResourceHelpers.GetColor(nameof(DarkSubtle)); 
+        set => ResourceHelpers.SetColor(nameof(DarkSubtle), value); 
+    }
+    public static Color ModalColor
+    { 
+        get => ResourceHelpers.GetColor(nameof(ModalColor)); 
+        set => ResourceHelpers.SetColor(nameof(ModalColor), value); 
+    }
+    public static Color ModalColorLight
+    { 
+        get => ResourceHelpers.GetColor(nameof(ModalColorLight)); 
+        set => ResourceHelpers.SetColor(nameof(ModalColorLight), value); 
+    }
+    public static Color ModalColorDark
+    { 
+        get => ResourceHelpers.GetColor(nameof(ModalColorDark)); 
+        set => ResourceHelpers.SetColor(nameof(ModalColorDark), value); 
     }
 }
 

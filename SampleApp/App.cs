@@ -9,6 +9,8 @@ public class App : Application
     {
         Resources.Add(new BootstrapColors());
         Resources.Add(new BootstrapStyles());
+        // re-apply saved theme
+        MAUIBootstrap.BootstrapColors.CurrentTheme = MAUIBootstrap.BootstrapColors.CurrentTheme;
         MainPage = new NavigationPage(new ControlsPage());
     }
 }
