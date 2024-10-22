@@ -370,4 +370,45 @@ UI.Active(anyView)
 // an finally use 
 .IsEnabled(bool)
 // on parent control for the row in order to get disabled state.  
+
+// when doing horizontal list group may use 
+.VerticalDivider(); // to complete list group style
+```
+
+### Variants
+```
+// may be called when component is rendered to have it enabled by default
+// or as part of an on tapped event to toggle the style on/off on anything
+// that inherits from View. 
+UI.PrimarySubtle(anyView);
+UI.SecondarySubtle(anyView);
+UI.SuccessSubtle(anyView);
+UI.WarningSubtle(anyView);
+UI.DangerSubtle(anyView);
+UI.InfoSubtle(anyView);
+UI.LightSubtle(anyView);
+UI.DarkSubtle(anyView);
+```
+
+### Boostrap Radio Button
+```
+new RadioButton()
+    .Bootstrap(); // will apply the bootstrap-esque radio template to your RadioButton.
+```
+
+### Modal Page
+```
+Navigation.PushModalAsync(
+    new ModalPage()
+        .Assign(out var modalPage)
+        .IsCloseVisible(true) // set false for no close button
+        .IsFullScreen(false) // set true for modal to take up whole screen
+        .ModalHeader(new Label().Text("Title")) // can be any view
+        .Body(new Label().Text("Body")) // can be any view
+        .OnClosed((s,e) => {
+            // modal was closed
+        });
+);
+
+modalPage.ManualClose(); // will close page programmatically if triggered by some other event
 ```
