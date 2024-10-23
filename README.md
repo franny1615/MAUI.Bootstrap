@@ -412,3 +412,34 @@ Navigation.PushModalAsync(
 
 modalPage.ManualClose(); // will close page programmatically if triggered by some other event
 ```
+
+### Tab Control
+Consistent tab bar across iOS and Android as a view
+```
+var tabBar = new TabControl()
+    .Tabs([
+        new TabModel()
+            .TranslateKey("Tab One")
+            .MaterialIcon(MaterialIcon.Live_tv)
+            .Active(),
+        new TabModel()
+            .TranslateKey("Tab Two")
+            .MaterialIcon(MaterialIcon.Live_tv)
+            .Active(),
+        new TabModel()
+            .TranslateKey("Tab Three")
+            .MaterialIcon(MaterialIcon.Live_tv)
+            .Active(),
+    ])
+    .OnTabSelected((s,e) => {
+        if (e.SelectedTab == null)
+            return;
+        
+        // use e.SelectedTab.TranslateKey
+        // to determine what you want to do next
+        // this can be swapping the Content of a ContentView
+        // to another view for example
+    });
+// .Active() will not trigger first event
+// you must set the first active tab yourself.
+```
