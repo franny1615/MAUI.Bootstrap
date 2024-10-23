@@ -94,6 +94,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new ModalDemoPage());
 								}),
 							new Button()
+								.Text("Tabs")
+								.Primary()
+								.OnClicked((s,e) => {
+									Navigation.PushAsync(new NavigationTabsDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
