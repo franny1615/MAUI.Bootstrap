@@ -417,6 +417,7 @@ modalPage.ManualClose(); // will close page programmatically if triggered by som
 Consistent tab bar across iOS and Android as a view
 ```
 var tabBar = new TabControl()
+    // .Vertical() // <-- vertical tab support
     .Tabs([
         new TabModel()
             .TranslateKey("Tab One")
