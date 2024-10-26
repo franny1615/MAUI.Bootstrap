@@ -11,11 +11,11 @@ One of the most useful libraries I have seen for C# only MAUI developers.
 
 ### Using MAUI.Bootstrap
 In your MauiProgram.cs file CreateMauiApp() method
-```
+```C#
 builder.UseMauiBootstrap("REGULAR_FONT_FAMILY_NAME", "BOLD_FONT_FAMILY_NAME");
 ```
 In your App.cs file constructor
-```
+```C#
 using MAUIBootstrap.Resources.Styles;
 ..
 Resources.Add(new BootstrapColors());
@@ -25,7 +25,7 @@ The above will set up everything needed to use the class library.
 
 ### Dark/Light Mode Theming
 The MAUI.Bootstrap library has basic dark/mode light mode theming available for you to use. 
-```
+```C#
 // toggle theme
 var themeButton = new Button()
     .Text("Toggle Theme")
@@ -46,7 +46,7 @@ Anything inside BootstrapColors.xaml binding to DynamicResource will be adjusted
 You can add more resource dictionaries to your app and bind them to any of the bootstrap colors.
 
 You may also change available bootstrap colors on the fly as well.
-```
+```C#
 // change page color to Pink
 var pinkPage = new Button()
     .Text("Set Page Color To Pink")
@@ -59,7 +59,7 @@ All available colors that can be changed on the fly are accessible via C# Bootst
 
 ### Accordion Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.
-```
+```C#
 // regular usage
 var accordion = new AccordionControl
 {
@@ -79,7 +79,7 @@ var accordion = new AccordionControl()
 
 ### Alert Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.
-```
+```C#
 // regular usage
 var alert = new AlertControl
 {   
@@ -122,7 +122,7 @@ var primaryAlert = new AlertControl()
 
 ### Badge Control API
 Inherits from MAUI Border component. Has access to Stroke/StrokeShape/etc.
-```
+```C#
 // regular usage
 var badge = new BadgeControl
 {
@@ -156,7 +156,7 @@ var primaryBadge = new BadgeControl()
 ```
 
 ### Breadcrumb Control API
-```
+```C#
 // regular usage
 var breadcrumbControl = new BreadcrumbControl
 {
@@ -193,7 +193,7 @@ var breadCrumb = new BreadcrumbControl()
 ```
 
 ### Button | RadioButton | CheckboxControl Styles
-```
+```C#
 // fluent methods available for existing Button control
 .Primary()
 .Secondary()
@@ -273,7 +273,7 @@ var previous = new Button()
 ```
 
 ### Carousel API
-```
+```C#
 // when you want default bootstrap styling of CarouselView control
 // optional can provide swipe boolean.
 var carousel = new CarouselView()
@@ -281,7 +281,7 @@ var carousel = new CarouselView()
 ```
 
 ### Label API
-```
+```C#
 // when using as carousel title, can use
 var label = new Label().Text("My Title")
     .CarouselCaptionTitle();
@@ -292,7 +292,7 @@ var label = new Label().Text("My Title")
 ```
 
 ### Collapse API
-```
+```C#
 // Against any of the following layouts 
 StackLayout
 Grid
@@ -321,14 +321,14 @@ Collapse.CollapseWidthAnimate(
 
 ### EntryControl
 Simple wrapper around entry, contains IsBorderless property. 
-```
+```C#
 var entry = new EntryControl()
     .IsBorderless(true);
 ```  
 
 ### EditorControl
 Simple wrapper around editor, contains IsBorderless property.
-```
+```C#
 var editor = new EditorControl()
     .IsBorderless(true);
 ```
@@ -336,7 +336,7 @@ var editor = new EditorControl()
 ### Dropdown
 A wrapper around Border that contains logic to create a vertical list of items.
 Can be used for simple item selection.
-```
+```C#
 var dropdown = new Dropdown()
     .Items([
         new DropdownItem
@@ -353,7 +353,7 @@ var dropdown = new Dropdown()
 ``` 
 
 ### List Group
-```
+```C#
 // Combine 
 .ListGroup() 
 // fluent method on Border
@@ -376,7 +376,7 @@ UI.Active(anyView)
 ```
 
 ### Variants
-```
+```C#
 // may be called when component is rendered to have it enabled by default
 // or as part of an on tapped event to toggle the style on/off on anything
 // that inherits from View. 
@@ -391,13 +391,13 @@ UI.DarkSubtle(anyView);
 ```
 
 ### Boostrap Radio Button
-```
+```C#
 new RadioButton()
     .Bootstrap(); // will apply the bootstrap-esque radio template to your RadioButton.
 ```
 
 ### Modal Page
-```
+```C#
 Navigation.PushModalAsync(
     new ModalPage()
         .Assign(out var modalPage)
@@ -415,7 +415,7 @@ modalPage.ManualClose(); // will close page programmatically if triggered by som
 
 ### Tab Control
 Consistent tab bar across iOS and Android as a view
-```
+```C# 
 var tabBar = new TabControl()
     // .Vertical() // <-- vertical tab support
     .Tabs([
@@ -443,4 +443,14 @@ var tabBar = new TabControl()
     });
 // .Active() will not trigger first event
 // you must set the first active tab yourself.
+```
+
+### Pagination Control
+```C#
+new PaginationControl()
+    .CurrentPage(1)
+    .TotalPages(10)
+    .OnPageChanged((s,e) => {
+        // e.RequestedPage has your number
+    });
 ```
