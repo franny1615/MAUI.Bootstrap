@@ -106,6 +106,13 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new FlyoutTabComboDemoPage());
 								}),
 							new Button()
+								.Text("Pagination")
+								.Primary()
+								.OnClicked((s, e) =>
+								{
+									Navigation.PushAsync(new PaginationPageControlDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
