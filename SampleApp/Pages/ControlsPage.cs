@@ -100,6 +100,12 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new NavigationTabsDemoPage());
 								}),
 							new Button()
+								.Text("Tab w/ Flyout")
+								.Primary()
+								.OnClicked((s,e) => {
+									Navigation.PushAsync(new FlyoutTabComboDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {

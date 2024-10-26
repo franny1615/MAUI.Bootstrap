@@ -33,6 +33,18 @@ public static class TabModelExtensions
         return tabModel;
     }
 
+    public static TabControl Horizontal(this TabControl control)
+    {
+        control.Orientation = TabOrientation.Horizontal;
+        return control;
+    }
+
+    public static TabControl Vertical(this TabControl control)
+    {
+        control.Orientation = TabOrientation.Vertical;
+        return control;
+    }
+
     #region Tab Selected
     public static TabControl OnTabSelected(
         this TabControl control,

@@ -23,6 +23,12 @@ public class TabEventArgs : EventArgs
     public TabModel? SelectedTab { get; set; } = null;
 }
 
+public enum TabOrientation
+{
+    Horizontal,
+    Vertical 
+}
+
 public class TabControl : Grid 
 {
     #region Events
@@ -30,6 +36,18 @@ public class TabControl : Grid
     #endregion
 
     #region Properties
+    public static readonly BindableProperty OrientationProperty = BindableProperty.Create(
+        nameof(Orientation),
+        typeof(TabOrientation),
+        typeof(TabControl),
+        TabOrientation.Horizontal
+    );
+    public TabOrientation Orientation
+    {
+        get => (TabOrientation)GetValue(OrientationProperty);
+        set => SetValue(OrientationProperty, value);
+    }
+
     public static readonly BindableProperty TabsProperty = BindableProperty.Create(
         nameof(Tabs),
         typeof(List<TabModel>),
@@ -51,17 +69,31 @@ public class TabControl : Grid
             Clear();
             if (Tabs != null && Tabs.Count > 0)
             {
-                var columnDefinitions = new ColumnDefinitionCollection();
-                for (int i = 0; i < Tabs.Count; i++)
+                switch (Orientation)
                 {
-                    columnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+                    case TabOrientation.Horizontal:
+                        var columnDefinitions = new ColumnDefinitionCollection();
+                        for (int i = 0; i < Tabs.Count; i++)
+                        {
+                            columnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+                        }
+                        ColumnDefinitions = columnDefinitions;
+                        break;
+                    case TabOrientation.Vertical:
+                        var rowDefinitions = new RowDefinitionCollection();
+                        for (int i = 0; i < Tabs.Count; i++)
+                        {
+                            rowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                        }
+                        RowDefinitions = rowDefinitions;
+                        RowSpacing = 8;
+                        break;
                 }
-                ColumnDefinitions = columnDefinitions;
 
                 for (int i = 0; i < Tabs.Count; i++)
                 {
                     var tab = Tabs[i];
-                    var tabLabel = new TabLabel();
+                    var tabLabel = new TabLabel(Orientation);
                     tabLabel.BindingContext(tab);
                     tabLabel.Tapped += (s, e) =>
                     {
@@ -85,7 +117,16 @@ public class TabControl : Grid
                             });
                         }
                     };
-                    Add(tabLabel.Column(i));
+
+                    switch (Orientation)
+                    {
+                        case TabOrientation.Horizontal:
+                            Add(tabLabel.Column(i));
+                            break;
+                        case TabOrientation.Vertical:
+                            Add(tabLabel.Row(i));
+                            break;
+                    }
                 }
             }
         }
@@ -135,24 +176,40 @@ public class TabLabel : Label
     #region UI
     private readonly Span _IconSpan = new Span()
         .FontFamily(nameof(MaterialIcon))
-        .FontSize(16)
         .TextColor(BootstrapColors.Secondary);
     private readonly Span _TitleSpan = new Span()
-        .FontSize(13)
         .TextColor(BootstrapColors.Secondary);
     #endregion
 
+    #region Instance
+    private int _DefaultIconSize = 18;
+    private int _DefaultTitleSize = 16;
+    private int _ExpandedIconSize = 21;
+    private int _ExpandedTitleSize = 18;
+    #endregion
+
     #region Constructor
-    public TabLabel()
+    public TabLabel(TabOrientation orientation)
     {
+        if (orientation == TabOrientation.Vertical)
+        {
+            _DefaultIconSize = 18;
+            _DefaultTitleSize = 21;
+            _ExpandedIconSize = 18;
+            _ExpandedTitleSize = 21;
+        }
+
+        _IconSpan.FontSize(_DefaultIconSize);
+        _TitleSpan.FontSize(_DefaultTitleSize);
+
         this
             .Padding(4)
             .VerticalTextAlignment(TextAlignment.Center)
-            .HorizontalTextAlignment(TextAlignment.Center)
+            .HorizontalTextAlignment(orientation == TabOrientation.Horizontal ? TextAlignment.Center : TextAlignment.Start)  
             .FormattedText(
                 new FormattedString().Spans([
                     _IconSpan,
-                    new Span().Text("\n"),
+                    new Span().Text(orientation == TabOrientation.Horizontal ? "\n" : "  "),
                     _TitleSpan
                 ])
             )
@@ -190,20 +247,20 @@ public class TabLabel : Label
             if (IsActive)
             {
                 _IconSpan
-                    .FontSize(21)
+                    .FontSize(_ExpandedIconSize)
                     .TextColor(BootstrapColors.Primary);
                 _TitleSpan
-                    .FontSize(16)
+                    .FontSize(_ExpandedTitleSize)
                     .TextColor(BootstrapColors.Primary)
                     .FontFamily(DynamicConstants.Instance.BoldFont);
             }
             else
             {
                 _IconSpan
-                    .FontSize(16)
+                    .FontSize(_DefaultIconSize)
                     .TextColor(BootstrapColors.Secondary);
                 _TitleSpan
-                    .FontSize(13)
+                    .FontSize(_DefaultTitleSize)
                     .FontFamily(DynamicConstants.Instance.RegularFont)
                     .TextColor(BootstrapColors.Secondary);
             }
