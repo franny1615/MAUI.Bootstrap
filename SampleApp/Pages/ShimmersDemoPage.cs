@@ -35,6 +35,7 @@ public class ShimmersDemoPage : ContentPage
             {
                 var shimmerCard = new ShimmerCard();
                 shimmerCard.SetBinding(BindingContextProperty, ".");
+                shimmerCard.SetBinding(ShimmerCard.ImageSourceProperty, nameof(ShimmerModel.ImageSource));
                 shimmerCard.SetBinding(ShimmerCard.ShimmeringProperty, nameof(ShimmerModel.Shimmering));
                 shimmerCard.SetBinding(ShimmerCard.TitleProperty, nameof(ShimmerModel.Title));
                 shimmerCard.SetBinding(ShimmerCard.SubTitleProperty, nameof(ShimmerModel.SubTitle));
@@ -69,6 +70,7 @@ public class ShimmersDemoPage : ContentPage
         _ShimmersCollection.ItemsSource = _ViewModel.Shimmers;
         await _ViewModel.FetchShimmers();
         _ShimmersCollection.ItemsSource = _ViewModel.Data;
+        
         _Refresh.IsRefreshing = false;
     }
 
@@ -107,7 +109,7 @@ public partial class ShimmersViewModel : ObservableObject
         {
             Title = "Card One",
             SubTitle = "This is some text for the card to show as a subtitle",
-            ImageSource = "https://picsum.photos/200/120"
+            ImageSource = "https://picsum.photos/200/120",
         });
         Data.Add(new ShimmerModel
         {

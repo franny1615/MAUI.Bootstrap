@@ -32,8 +32,7 @@ public class ShimmerCard : Border
         nameof(Shimmering),
         typeof(bool),
         typeof(ShimmerCard),
-        false,
-        BindingMode.TwoWay);
+        false);
 
     public bool Shimmering
     {
@@ -45,8 +44,7 @@ public class ShimmerCard : Border
         nameof(Title),
         typeof(string),
         typeof(ShimmerCard),
-        null,
-        BindingMode.TwoWay);
+        null);
 
     public string Title
     {
@@ -58,8 +56,7 @@ public class ShimmerCard : Border
         nameof(SubTitle),
         typeof(string),
         typeof(ShimmerCard),
-        null,
-        BindingMode.TwoWay);
+        null);
 
     public string SubTitle
     {
@@ -71,8 +68,7 @@ public class ShimmerCard : Border
         nameof(ImageSource),
         typeof(ImageSource),
         typeof(ShimmerCard),
-        null,
-        BindingMode.TwoWay);
+        null);
 
     public ImageSource ImageSource
     {
@@ -91,10 +87,12 @@ public class ShimmerCard : Border
         .FontFamily(DynamicConstants.Instance.BoldFont)
         .FontSize(21)
         .MinimumWidthRequest(120)
+        .MinimumHeightRequest(21)
         .AlignLeft()
         .Margin(8,0,8,0);
     private readonly Label _SubTitle = new Label()
         .FontSize(16)
+        .MinimumHeightRequest(21)
         .MinimumWidthRequest(90)
         .AlignLeft()
         .Margin(8,0,8,0);
@@ -103,6 +101,7 @@ public class ShimmerCard : Border
         .Text(e => e.Translate("Submit"))
         .AlignLeft()
         .MinimumWidthRequest(90)
+        .MinimumHeightRequest(21)
         .Margin(8,0,8,8);
     #endregion
     
@@ -150,41 +149,28 @@ public class ShimmerCard : Border
     private void TriggerShimmering()
     {
         if (!Shimmering)
-            return;
-
-        Task.Run(async () =>
         {
-            var cacheSource = ImageSource;
-            var cacheTitle = Title;
-            var cacheSubTitle = SubTitle;
-
-            ImageSource = "";
-            Title = "";
-            SubTitle = "";
-
-            _Action.Text("");
-            
-            _ImageSource.SecondaryPlaceholder();
-            _Title.SecondaryPlaceholder();
-            _SubTitle.SecondaryPlaceholder();
-            _Action.PrimaryPlaceholder();
-            
-            while (Shimmering)
-            {
-                await _ContentLayout.FadeTo(0.85f);
-                await _ContentLayout.FadeTo(1);
-            }
-
-            _ImageSource.ClearPlaceholder();
             _Title.ClearPlaceholder();
             _SubTitle.ClearPlaceholder();
             _Action.Primary();
             
-            ImageSource = cacheSource;
-            Title = cacheTitle;
-            SubTitle = cacheSubTitle;
-
             _Action.Text(e => e.Translate("Submit"));
+            return;
+        }
+
+        Task.Run(async () =>
+        {
+            while (Shimmering)
+            {
+                _ImageSource.SecondaryPlaceholder();
+                _Title.SecondaryPlaceholder();
+                _SubTitle.SecondaryPlaceholder();
+                _Action.PrimaryPlaceholder();
+                _Action.Text("");
+                
+                await _ContentLayout.FadeTo(0.85f);
+                await _ContentLayout.FadeTo(1);
+            }
         });
     }
     #endregion
