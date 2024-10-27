@@ -39,6 +39,7 @@ public class ShimmersDemoPage : ContentPage
                 shimmerCard.SetBinding(ShimmerCard.ShimmeringProperty, nameof(ShimmerModel.Shimmering));
                 shimmerCard.SetBinding(ShimmerCard.TitleProperty, nameof(ShimmerModel.Title));
                 shimmerCard.SetBinding(ShimmerCard.SubTitleProperty, nameof(ShimmerModel.SubTitle));
+                shimmerCard.SetBinding(ShimmerCard.ActionTextProperty, nameof(ShimmerModel.ActionText));
                 shimmerCard.Submitted += ShimmerSubmitted;
                 return shimmerCard;
             }));
@@ -110,18 +111,21 @@ public partial class ShimmersViewModel : ObservableObject
             Title = "Card One",
             SubTitle = "This is some text for the card to show as a subtitle",
             ImageSource = "https://picsum.photos/200/120",
+            ActionText = "Submit"
         });
         Data.Add(new ShimmerModel
         {
             Title = "Card Two",
             SubTitle = "This is some text for the card to show as a subtitle",
-            ImageSource = "https://picsum.photos/200/120"
+            ImageSource = "https://picsum.photos/200/120",
+            ActionText = "Submit"
         });
         Data.Add(new ShimmerModel
         {
             Title = "Card Three",
             SubTitle = "This is some text for the card to show as a subtitle",
-            ImageSource = "https://picsum.photos/200/120"
+            ImageSource = "https://picsum.photos/200/120",
+            ActionText = "Submit"
         });
     }
 }

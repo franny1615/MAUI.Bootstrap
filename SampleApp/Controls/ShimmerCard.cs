@@ -20,6 +20,9 @@ public partial class ShimmerModel : ObservableObject
 
     [ObservableProperty] 
     private ImageSource _ImageSource = "";
+    
+    [ObservableProperty]
+    private string _ActionText = string.Empty;
 }
 #endregion 
 
@@ -75,6 +78,18 @@ public class ShimmerCard : Border
         get => (ImageSource)GetValue(ImageSourceProperty);
         set => SetValue(ImageSourceProperty, value);
     }
+
+    public static readonly BindableProperty ActionTextProperty = BindableProperty.Create(
+        nameof(ActionText),
+        typeof(string),
+        typeof(ShimmerCard),
+        null);
+
+    public string ActionText
+    {
+        get => (string)GetValue(ActionTextProperty);
+        set => SetValue(ActionTextProperty, value);
+    }
     #endregion
 
     #region UI
@@ -98,7 +113,6 @@ public class ShimmerCard : Border
         .Margin(8,0,8,0);
     private readonly Button _Action = new Button()
         .Primary()
-        .Text(e => e.Translate("Submit"))
         .AlignLeft()
         .MinimumWidthRequest(90)
         .MinimumHeightRequest(21)
@@ -111,6 +125,7 @@ public class ShimmerCard : Border
         _ImageSource.Source(e => e.Path(nameof(ImageSource)).Source(this));
         _Title.Text(e => e.Path(nameof(Title)).Source(this));
         _SubTitle.Text(e => e.Path(nameof(SubTitle)).Source(this));
+        _Action.Text(e => e.Path(nameof(ActionText)).Source(this));
         _Action.OnClicked((s, e) =>
         {
             if (Shimmering)
@@ -153,23 +168,23 @@ public class ShimmerCard : Border
             _Title.ClearPlaceholder();
             _SubTitle.ClearPlaceholder();
             _Action.Primary();
-            
-            _Action.Text(e => e.Translate("Submit"));
             return;
         }
 
+        _ImageSource.SecondaryPlaceholder();
+        _Title.SecondaryPlaceholder();
+        _SubTitle.SecondaryPlaceholder();
+        _Action.PrimaryPlaceholder();
+        
         Task.Run(async () =>
         {
             while (Shimmering)
             {
-                _ImageSource.SecondaryPlaceholder();
-                _Title.SecondaryPlaceholder();
-                _SubTitle.SecondaryPlaceholder();
-                _Action.PrimaryPlaceholder();
-                _Action.Text("");
-                
-                await _ContentLayout.FadeTo(0.85f);
-                await _ContentLayout.FadeTo(1);
+                await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    await _ContentLayout.FadeTo(0.85f);
+                    await _ContentLayout.FadeTo(1);
+                });
             }
         });
     }
