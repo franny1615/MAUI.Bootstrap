@@ -113,6 +113,13 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new PaginationPageControlDemoPage());
 								}),
 							new Button()
+								.Text("Shimmers")
+								.Primary()
+								.OnClicked((s, e) =>
+								{
+									Navigation.PushAsync(new ShimmersDemoPage(new ShimmersViewModel()));
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {

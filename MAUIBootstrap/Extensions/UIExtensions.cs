@@ -183,4 +183,65 @@ public static class UI
             view.BackgroundColor(color);
         }
     }
+
+    public static T PrimaryPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Primary.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T SecondaryPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Secondary.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T SuccessPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Success.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T WarningPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Warning.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T DangerPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Danger.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T InfoPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Info.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T LightPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Light.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T DarkPlaceholder<T>(this T potentialView)
+    {
+        ApplyColorToView(potentialView, BootstrapColors.Dark.WithAlpha(0.5f));
+        return potentialView;
+    }
+
+    public static T ClearPlaceholder<T>(this T potentialView)
+    {
+        if (potentialView is View view)
+            view.BackgroundColor(Colors.Transparent);
+        return potentialView;
+    }
+    
+    private static void ApplyColorToView<T>(T potentialView, Color color)
+    {
+        if (potentialView is View view)
+            view.BackgroundColor(color);
+    }
 }

@@ -60,7 +60,7 @@ public class PaginationControl : Border
     private readonly Span _CurrentPageSpan = new Span();
     private readonly Span _TotalPageSpan = new Span();
     private readonly Label _IndicatorMarker = new Label()
-        .Padding(0,4,0,4)
+        .Padding(4,4,4,4)
         .HorizontalTextAlignment(TextAlignment.Center)
         .VerticalTextAlignment(TextAlignment.Center)
         .FontSize(18)
@@ -106,7 +106,7 @@ public class PaginationControl : Border
         _ = _PreviousButton.TextColorTo(Colors.White, 35);
         await _PreviousButton.BackgroundColorTo(BootstrapColors.Primary, 35);
         _ = _PreviousButton.TextColorTo(BootstrapColors.Secondary);
-        await _PreviousButton.BackgroundColorTo(Colors.Transparent, 35);
+        _ = _PreviousButton.BackgroundColorTo(Colors.Transparent, 35);
                 
         if (CurrentPage - 1 <= 0)
             CurrentPage = 1;
@@ -126,7 +126,7 @@ public class PaginationControl : Border
         _ = _NextButton.TextColorTo(Colors.White, 35);
         await _NextButton.BackgroundColorTo(BootstrapColors.Primary, 35);
         _ = _NextButton.TextColorTo(BootstrapColors.Secondary);
-        await _NextButton.BackgroundColorTo(Colors.Transparent, 35);
+        _ = _NextButton.BackgroundColorTo(Colors.Transparent, 35);
                 
         if (CurrentPage + 1 > TotalPages)
             CurrentPage = TotalPages;
