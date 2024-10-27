@@ -454,3 +454,34 @@ new PaginationControl()
         // e.RequestedPage has your number
     });
 ```
+
+### Shimmers
+```C# 
+// available placeholder colors from bootstrap
+var view = new Label(); // can be anything that inherits from View
+view.PrimaryPlaceholder();
+view.SecondaryPlaceholder();
+view.SuccessPlaceholder();
+view.WarningPlaceholder();
+view.DangerPlaceholder();
+view.InfoPlaceholder();
+view.LightPlaceholder();
+view.DarkPlaceholder();
+
+// makes the background transperant again
+view.ClearPlacholder();
+
+// then to achieve a 'shimmer' animation
+// on the parent layout of the view, or the view itself
+Task.Run(async () => 
+{
+   while(true) // swap with a variable controlled outside of task
+   {
+        await view.FadeTo(0.85f);
+        await view.FadeTo(1);
+   }
+});
+
+// see ShimmerCard/ShimmersDemoPage in SampleApp project
+// for a full example.
+```
