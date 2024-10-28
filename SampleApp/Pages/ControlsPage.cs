@@ -120,6 +120,13 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new ShimmersDemoPage(new ShimmersViewModel()));
 								}),
 							new Button()
+								.Text("Popovers")
+								.Primary()
+								.OnClicked((s, e) =>
+								{
+									Navigation.PushAsync(new PopoverDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
