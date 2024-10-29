@@ -12,26 +12,19 @@ public class Popover : IPopover
     public void Show(
         PopoverPlacement placement, 
         View parent, 
-        View content)
+        View content,
+        float width = 0f,
+        float height = 0f)
     {
         if (parent.Handler?.MauiContext == null) {  return; }
         
         var currentVc = Platform.GetCurrentUIViewController();
         if (currentVc == null) { return; }
         
-        var popoverVc = new PopoverViewController();
+        var popoverVc = new PopoverViewController(content.ToPlatform(parent.Handler.MauiContext), width, height);
         if (popoverVc.View == null) { return; }
-
-        var contentView = content.ToPlatform(parent.Handler.MauiContext);
         
-        popoverVc.View.AddSubview(contentView);
         popoverVc.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-        
-        contentView.TranslatesAutoresizingMaskIntoConstraints = false;
-        contentView.TopAnchor.ConstraintEqualTo(popoverVc.View.TopAnchor).Active = true;
-        contentView.BottomAnchor.ConstraintEqualTo(popoverVc.View.BottomAnchor).Active = true;
-        contentView.LeftAnchor.ConstraintEqualTo(popoverVc.View.LeftAnchor).Active = true;
-        contentView.RightAnchor.ConstraintEqualTo(popoverVc.View.RightAnchor).Active = true;
         
         var popoverController = popoverVc.PopoverPresentationController;
         if (popoverController == null) { return; }
@@ -61,12 +54,28 @@ public class Popover : IPopover
     }
 }
 
-public class PopoverViewController : UIViewController
+public class PopoverViewController(
+    UIView? content,
+    float width,
+    float height) : UIViewController
 {
     public override void ViewDidLoad()
     {
         base.ViewDidLoad();
-        // TODO: figure out how to auto calculate height of content
+
+        if (View == null || content == null) return;
+        
+        View.AddSubview(content);
+
+        content.TranslatesAutoresizingMaskIntoConstraints = false;
+        
+        content.TranslatesAutoresizingMaskIntoConstraints = false;
+        content.TopAnchor.ConstraintEqualTo(View.TopAnchor).Active = true;
+        content.LeftAnchor.ConstraintEqualTo(View.LeftAnchor).Active = true;
+        content.RightAnchor.ConstraintEqualTo(View.RightAnchor).Active = true;
+        content.BottomAnchor.ConstraintEqualTo(View.BottomAnchor).Active = true;
+        
+        PreferredContentSize = new CGSize(width, height);
     }
 }
 
