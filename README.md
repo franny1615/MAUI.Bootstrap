@@ -505,3 +505,38 @@ Popover.Instance.Show(
         .HorizontalTextAlignment(TextAlignment.Center)
         .Text("Top Popover"));
 ```
+
+### Spinner
+```C#
+var primarySpinner = new SpinnerControl()
+    .StrokeThickness(4) // controls thickness or arc
+    .Diameter(32) // controls width/height of view
+    .Color(BootstrapColors.Primary) // color of arc
+    .Start(); // starts the animation
+
+primarySpinner.Stop(); // ends the animation, probably want to call in unison with .IsVisible(false);
+```
+
+### Rounded Rect Spinner
+Progressively colors in the border of a rounded rectangle on the first loop.
+
+Every subsequent loop will show the filled in color spinning.
+
+Works with best with at least two Colors.
+```C#
+var roundedRectSpinner = new RoundRectSpinnerControl()
+    .MinimumHeightRequest(40) 
+    .FillHorizontal()
+    .ZIndex(0)
+    .StaticBorderColor(BootstrapColors.Secondary) // the default border color
+    .CornerRadius(16)
+    .StrokeThickness(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 8 : 4) // thickness of border
+    .CornerRadius(12) // border radius 
+    .GradientColors([ // your gradient colors
+        BootstrapColors.Primary,
+        BootstrapColors.Info
+    ]);
+
+roundedRectSpinner.IsLoading = true; // starts the animation
+roundedRectSpinner.IsLoading = false; // stops the animation
+```
