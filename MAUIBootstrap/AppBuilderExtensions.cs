@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Core;
 using FmgLib.MauiMarkup;
 using Microsoft.Maui.Controls.Compatibility.Hosting;
 using MAUIBootstrap.Controls;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 #if ANDROID
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
@@ -29,6 +30,7 @@ public static class AppBuilderExtensions
             .UseMauiCommunityToolkitCore()
             .UseMauiMarkupLocalization()
             .UseMauiCompatibility()
+            .UseSkiaSharp()
             .ConfigureFonts((fonts) =>
             {
                 fonts.AddFont("MaterialIcons-Regular.ttf", nameof(MaterialIcon));

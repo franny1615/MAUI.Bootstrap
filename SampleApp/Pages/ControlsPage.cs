@@ -127,6 +127,13 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new PopoverDemoPage());
 								}),
 							new Button()
+								.Text("Progress")
+								.Primary()
+								.OnClicked((s, e) =>
+								{
+									Navigation.PushAsync(new ProgressControlsDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
