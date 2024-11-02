@@ -13,7 +13,8 @@ public class Popover : IPopover
     public void Show(
         PopoverPlacement placement,
         View parent, 
-        View content)
+        View content,
+        int dismissInSeconds = 0)
     {   
         if (parent.Handler?.MauiContext == null) { return; }
         
@@ -37,17 +38,44 @@ public class Popover : IPopover
         switch (placement)
         {   
             case PopoverPlacement.Bottom:
-                popupWindow.ShowAtLocation(parentView, GravityFlags.NoGravity, location[0] - (int)(contentView.MeasuredWidth * 0.25), location[1] + contentView.MeasuredHeight);
+                popupWindow.ShowAtLocation(
+                    parentView, 
+                    GravityFlags.NoGravity, 
+                    location[0] - (int)(Math.Abs(contentView.MeasuredWidth - parentView.MeasuredWidth) * 0.5), 
+                    location[1] + parentView.MeasuredHeight);
                 break;
             case PopoverPlacement.Top:
-                popupWindow.ShowAtLocation(parentView, GravityFlags.NoGravity, location[0] - (int)(contentView.MeasuredWidth * 0.25), location[1] - contentView.MeasuredHeight);
+                popupWindow.ShowAtLocation(
+                    parentView, GravityFlags.NoGravity, 
+                    location[0] - (int)(Math.Abs(contentView.MeasuredWidth - parentView.MeasuredWidth) * 0.5), 
+                    location[1] - contentView.MeasuredHeight);
                 break;
             case PopoverPlacement.Left:
-                popupWindow.ShowAtLocation(parentView, GravityFlags.NoGravity, location[0] - contentView.MeasuredWidth, location[1]);
+                popupWindow.ShowAtLocation(
+                    parentView, 
+                    GravityFlags.NoGravity, 
+                    location[0] - contentView.MeasuredWidth, 
+                    (int)((location[1] + (parentView.MeasuredHeight * 0.5)) - (contentView.MeasuredHeight * 0.5)));
                 break;
             case PopoverPlacement.Right:
-                popupWindow.ShowAtLocation(parentView, GravityFlags.NoGravity, location[0] + parentView.Width, location[1]);
+                popupWindow.ShowAtLocation(
+                    parentView, 
+                    GravityFlags.NoGravity, 
+                    location[0] + parentView.Width, 
+                    (int)((location[1] + (parentView.MeasuredHeight * 0.5)) - (contentView.MeasuredHeight * 0.5)));
                 break;
+        }
+
+        if (dismissInSeconds > 0)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(dismissInSeconds * 1000);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    popupWindow.Dismiss();
+                });
+            });
         }
     }
 }

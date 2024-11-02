@@ -14,5 +14,6 @@ public interface IPopover
     public void Show(
         PopoverPlacement placement, 
         View parent, 
-        View content);
+        View content,
+        int dismissInSeconds = 0);
 }

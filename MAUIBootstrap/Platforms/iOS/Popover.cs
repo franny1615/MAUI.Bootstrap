@@ -12,7 +12,8 @@ public class Popover : IPopover
     public void Show(
         PopoverPlacement placement, 
         View parent, 
-        View content)
+        View content,
+        int dismissInSeconds = 0)
     {
         if (parent.Handler?.MauiContext == null) { return; }
         var parentView = parent.ToPlatform(parent.Handler.MauiContext);
@@ -31,7 +32,7 @@ public class Popover : IPopover
         var h = absoluteFrame.Size.Height;
         
         #if DEBUG
-        System.Diagnostics.Debug.WriteLine($"CGRect({x},{y},{w},{h})");
+        System.Diagnostics.Debug.WriteLine($"CGRect({x},{y},{w},{h}), ContentView size: {size.Width}x{size.Height}");
         #endif
         
         switch (placement)
@@ -39,7 +40,7 @@ public class Popover : IPopover
             case PopoverPlacement.Top:
                 contentView.Frame = new(
                     x - (Math.Abs(size.Width - w) * 0.5), 
-                    y - h, 
+                    y - size.Height, 
                     size.Width,
                     size.Height);
                 break;
@@ -53,14 +54,14 @@ public class Popover : IPopover
             case PopoverPlacement.Left:
                 contentView.Frame = new(
                     x - Math.Abs(size.Width - w) - w, 
-                    y + (Math.Abs(size.Height - h) * 0.5), 
+                    (y + (h * 0.5)) - (size.Height * 0.5), // midYOfParent - halfOfContent = yActualOfContent 
                     size.Width,
                     size.Height);
                 break;
             case PopoverPlacement.Right:
                 contentView.Frame = new(
                     x + w, 
-                    y + (Math.Abs(size.Height - h) * 0.5), 
+                    (y + (h * 0.5)) - (size.Height * 0.5), // midYOfParent - halfOfContent = yActualOfContent
                     size.Width,
                     size.Height);
                 break;
@@ -82,5 +83,18 @@ public class Popover : IPopover
         
         currentVc.View.AddSubview(contentView);
         currentVc.View.BringSubviewToFront(contentView);
+
+        if (dismissInSeconds > 0)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(dismissInSeconds * 1000);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    dismissView.RemoveFromSuperview();
+                    contentView.RemoveFromSuperview();
+                });
+            });
+        }
     }
 }

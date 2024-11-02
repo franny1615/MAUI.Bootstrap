@@ -134,6 +134,13 @@ public class ControlsPage : ContentPage
 									Navigation.PushAsync(new ProgressControlsDemoPage());
 								}),
 							new Button()
+								.Text("Toasts")
+								.Primary()
+								.OnClicked((s, e) =>
+								{
+									Navigation.PushAsync(new ToastDemoPage());
+								}),
+							new Button()
 								.Text("Toggle Theme")
 								.Danger()
 								.OnClicked((s, e) => {
