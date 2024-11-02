@@ -503,7 +503,8 @@ Popover.Instance.Show(
         .BackgroundColor(BootstrapColors.Secondary)
         .TextColor(Colors.White)
         .HorizontalTextAlignment(TextAlignment.Center)
-        .Text("Top Popover"));
+        .Text("Top Popover"),
+    0); // final parameter is an auto-dismiss number in seconds. Defaults to zero and doesn't auto dismiss
 ```
 
 ### Spinner
