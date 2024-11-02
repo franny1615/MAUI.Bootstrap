@@ -485,3 +485,23 @@ Task.Run(async () =>
 // see ShimmerCard/ShimmersDemoPage in SampleApp project
 // for a full example.
 ```
+
+### Popovers
+```C#
+#if ANDROID 
+using MAUIBootstrap.Platforms.Android;
+#elif IOS
+using MAUIBootstrap.Platforms.iOS;
+#endif
+
+// somewhere inside an EventHandler
+Popover.Instance.Show(
+    PopoverPlacement.Top, // .Bottom, .Left, .Right also available
+    parentView,
+    new Label() 
+        .Padding(8)
+        .BackgroundColor(BootstrapColors.Secondary)
+        .TextColor(Colors.White)
+        .HorizontalTextAlignment(TextAlignment.Center)
+        .Text("Top Popover"));
+```
