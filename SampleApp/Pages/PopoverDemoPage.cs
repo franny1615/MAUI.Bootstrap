@@ -16,39 +16,29 @@ public class PopoverDemoPage : ContentPage
     {
         this
             .Title("Popovers")
-            .Content(new Grid()
-                .ColumnDefinitions(e => e.Star().Star().Star())
-                .RowDefinitions(e => e.Star().Star().Star())
+            .Content(new VerticalStackLayout()
                 .Children([
                     new Button()
                         .Primary()
                         .Text("Right")
                         .OnClicked(RightPopover)
-                        .Row(0)
-                        .Column(0)
                         .AlignLeft()
                         .CenterVertical(),
                     new Button()
                         .Primary()
                         .Text("Bottom")
                         .OnClicked(BottomPopover)
-                        .Row(0)
-                        .Column(1)
                         .Center(),
                     new Button()
                         .Primary()
                         .Text("Left")
                         .OnClicked(LeftPopover)
-                        .Row(0)
-                        .Column(2)
                         .AlignRight()
                         .CenterVertical(),
                     new Button()
                         .Primary()
                         .Text("Top")
                         .OnClicked(TopPopover)
-                        .Row(2)
-                        .Column(1)
                         .Center(),
                 ]));
     }
@@ -65,9 +55,7 @@ public class PopoverDemoPage : ContentPage
                 .BackgroundColor(BootstrapColors.Secondary)
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
-                .Text("Top Popover"),
-            120,
-            50);
+                .Text("Top Popover"));
     }
 
     private void BottomPopover(object? sender, EventArgs e)
@@ -82,9 +70,7 @@ public class PopoverDemoPage : ContentPage
                 .BackgroundColor(BootstrapColors.Secondary)
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
-                .Text("Bottom Popover"),
-            120,
-            50);
+                .Text("Bottom Popover"));
     }
 
     private void LeftPopover(object? sender, EventArgs e)
@@ -99,9 +85,7 @@ public class PopoverDemoPage : ContentPage
                 .BackgroundColor(BootstrapColors.Secondary)
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
-                .Text("Left Popover"),
-            120,
-            50);
+                .Text("Left Popover"));
     }
 
     private void RightPopover(object? sender, EventArgs e)
@@ -116,8 +100,6 @@ public class PopoverDemoPage : ContentPage
                 .BackgroundColor(BootstrapColors.Secondary)
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
-                .Text("Right Popover"),
-            120,
-            50);
+                .Text("Right Popover"));
     }
 }

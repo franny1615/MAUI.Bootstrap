@@ -13,9 +13,7 @@ public class Popover : IPopover
     public void Show(
         PopoverPlacement placement,
         View parent, 
-        View content,
-        float width = 0f,
-        float height = 0f)
+        View content)
     {   
         if (parent.Handler?.MauiContext == null) { return; }
         

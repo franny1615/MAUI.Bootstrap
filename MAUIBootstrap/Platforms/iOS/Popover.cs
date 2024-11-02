@@ -12,79 +12,75 @@ public class Popover : IPopover
     public void Show(
         PopoverPlacement placement, 
         View parent, 
-        View content,
-        float width = 0f,
-        float height = 0f)
+        View content)
     {
-        if (parent.Handler?.MauiContext == null) {  return; }
+        if (parent.Handler?.MauiContext == null) { return; }
+        var parentView = parent.ToPlatform(parent.Handler.MauiContext);
+        var contentView = content.ToPlatform(parent.Handler.MauiContext);
         
         var currentVc = Platform.GetCurrentUIViewController();
-        if (currentVc == null) { return; }
+        if (currentVc == null || currentVc.View == null) { return; }
         
-        var popoverVc = new PopoverViewController(content.ToPlatform(parent.Handler.MauiContext), width, height);
-        if (popoverVc.View == null) { return; }
+        var size = contentView.SystemLayoutSizeFittingSize(UIView.UILayoutFittingExpandedSize);
+
+        var absoluteFrame = parentView.ConvertRectFromView(parentView.Bounds, currentVc.View);
         
-        popoverVc.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+        var x = Math.Abs(absoluteFrame.X);
+        var y = Math.Abs(absoluteFrame.Y);
+        var w = absoluteFrame.Size.Width;
+        var h = absoluteFrame.Size.Height;
         
-        var popoverController = popoverVc.PopoverPresentationController;
-        if (popoverController == null) { return; }
+        #if DEBUG
+        System.Diagnostics.Debug.WriteLine($"CGRect({x},{y},{w},{h})");
+        #endif
+        
         switch (placement)
         {
             case PopoverPlacement.Top:
-                popoverController.PermittedArrowDirections = UIPopoverArrowDirection.Down;
+                contentView.Frame = new(
+                    x - (Math.Abs(size.Width - w) * 0.5), 
+                    y - h, 
+                    size.Width,
+                    size.Height);
                 break;
             case PopoverPlacement.Bottom:
-                popoverController.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+                contentView.Frame = new(
+                    x - (Math.Abs(size.Width - w) * 0.5), 
+                    y + h, 
+                    size.Width,
+                    size.Height);
                 break;
             case PopoverPlacement.Left:
-                popoverController.PermittedArrowDirections = UIPopoverArrowDirection.Right;
+                contentView.Frame = new(
+                    x - Math.Abs(size.Width - w) - w, 
+                    y + (Math.Abs(size.Height - h) * 0.5), 
+                    size.Width,
+                    size.Height);
                 break;
             case PopoverPlacement.Right:
-                popoverController.PermittedArrowDirections = UIPopoverArrowDirection.Left;
+                contentView.Frame = new(
+                    x + w, 
+                    y + (Math.Abs(size.Height - h) * 0.5), 
+                    size.Width,
+                    size.Height);
                 break;
         }
 
-        var parentView = parent.ToPlatform(parent.Handler.MauiContext);
+        var dismissView = new UIView();
+        dismissView.Frame = currentVc.View.Frame;
+        dismissView.BackgroundColor = UIColor.Clear;
+        dismissView.GestureRecognizers = [
+            new UITapGestureRecognizer(() =>
+            {
+                dismissView.RemoveFromSuperview();
+                contentView.RemoveFromSuperview();
+            })
+        ];
         
-        popoverController.SourceRect = parentView.Bounds;
-        popoverController.SourceView = parentView;
-        popoverController.Delegate = new PopoverDelegate();
+        currentVc.View.AddSubview(dismissView);
+        currentVc.View.BringSubviewToFront(dismissView);
         
-        currentVc.PresentViewController(popoverVc, true, null);
-    }
-}
-
-public class PopoverViewController(
-    UIView? content,
-    float width,
-    float height) : UIViewController
-{
-    public override void ViewDidLoad()
-    {
-        base.ViewDidLoad();
-
-        if (View == null || content == null) return;
-        
-        View.AddSubview(content);
-
-        content.TranslatesAutoresizingMaskIntoConstraints = false;
-        
-        content.TranslatesAutoresizingMaskIntoConstraints = false;
-        content.TopAnchor.ConstraintEqualTo(View.TopAnchor).Active = true;
-        content.LeftAnchor.ConstraintEqualTo(View.LeftAnchor).Active = true;
-        content.RightAnchor.ConstraintEqualTo(View.RightAnchor).Active = true;
-        content.BottomAnchor.ConstraintEqualTo(View.BottomAnchor).Active = true;
-        
-        PreferredContentSize = new CGSize(width, height);
-    }
-}
-
-public class PopoverDelegate : UIPopoverPresentationControllerDelegate
-{
-    public override UIModalPresentationStyle GetAdaptivePresentationStyle(
-        UIPresentationController controller,
-        UITraitCollection traitCollection)
-    {
-        return UIModalPresentationStyle.None;
+        currentVc.View.AddSubview(contentView);
+        currentVc.View.BringSubviewToFront(contentView);
     }
 }
