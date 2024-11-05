@@ -9,6 +9,7 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">13.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -29,4 +30,12 @@
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<PackageId>MAUI.Bootstrap</PackageId>
+		<PackageTags>.NET 8.0;iOS;Android;.NET MAUI</PackageTags>
+		<Description>Basic library containing styles taken from web bootstrap components applied to .NET MAUI components.</Description>
+		<Version>1.0.0</Version>
+		<Authors>F.F</Authors>
+		<Company>F.F</Company>
+	</PropertyGroup>
 </Project>
