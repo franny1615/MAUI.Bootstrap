@@ -170,4 +170,80 @@ public static class RoundRectSpinnerControlExtensions
         return self;
     }
     #endregion
+    
+    #region Blur
+    public static T Blur<T>(
+        this T self, 
+        int source) where T : RoundRectSpinnerControl
+    {
+        self.SetValue(RoundRectSpinnerControl.BlurProperty, source);
+        return self;
+    }
+
+    public static T Blur<T>(
+        this T self, 
+        Func<PropertyContext<int>, IPropertyBuilder<int>> configure) where T : RoundRectSpinnerControl
+    {
+        var context = new PropertyContext<int>(self, RoundRectSpinnerControl.BlurProperty);
+        configure(context).Build();
+        return self;
+    }
+
+    public static SettersContext<T> Blur<T>(
+        this SettersContext<T> self,
+        int source)
+        where T : RoundRectSpinnerControl
+    {
+        self.XamlSetters.Add(new Setter { Property = RoundRectSpinnerControl.BlurProperty, Value = source });
+        return self;
+    }
+
+    public static SettersContext<T> Blur<T>(
+        this SettersContext<T> self, 
+        Func<PropertySettersContext<int>, 
+            IPropertySettersBuilder<int>> configure) where T : RoundRectSpinnerControl
+    {
+        var context = new PropertySettersContext<int>(self.XamlSetters, RoundRectSpinnerControl.BlurProperty);
+        configure(context).Build();
+        return self;
+    }
+    #endregion
+    
+    #region Inset
+    public static T Inset<T>(
+        this T self, 
+        int source) where T : RoundRectSpinnerControl
+    {
+        self.SetValue(RoundRectSpinnerControl.InsetProperty, source);
+        return self;
+    }
+
+    public static T Inset<T>(
+        this T self, 
+        Func<PropertyContext<int>, IPropertyBuilder<int>> configure) where T : RoundRectSpinnerControl
+    {
+        var context = new PropertyContext<int>(self, RoundRectSpinnerControl.InsetProperty);
+        configure(context).Build();
+        return self;
+    }
+
+    public static SettersContext<T> Inset<T>(
+        this SettersContext<T> self,
+        int source)
+        where T : RoundRectSpinnerControl
+    {
+        self.XamlSetters.Add(new Setter { Property = RoundRectSpinnerControl.InsetProperty, Value = source });
+        return self;
+    }
+
+    public static SettersContext<T> Inset<T>(
+        this SettersContext<T> self, 
+        Func<PropertySettersContext<int>, 
+            IPropertySettersBuilder<int>> configure) where T : RoundRectSpinnerControl
+    {
+        var context = new PropertySettersContext<int>(self.XamlSetters, RoundRectSpinnerControl.InsetProperty);
+        configure(context).Build();
+        return self;
+    }
+    #endregion
 }

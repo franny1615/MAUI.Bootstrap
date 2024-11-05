@@ -3,6 +3,7 @@ using MAUIBootstrap;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
 using MAUIBootstrap.Utilities;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace SampleApp.Pages;
 
@@ -128,8 +129,45 @@ public class ProgressControlsDemoPage : ContentPage
                                         _Border.IsLoading = false;
                                     });
                                 })
+                        ]),
+                    new Grid()
+                        .Children([
+                            new RoundRectSpinnerControl()
+                                .ZIndex(0)
+                                .Assign(out var _Border2)
+                                .StaticBorderColor(BootstrapColors.Light)
+                                .StrokeThickness(8)
+                                .CornerRadius(12)
+                                .Inset(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 26 : 18)
+                                .Blur(12)
+                                .GradientColors([
+                                    BootstrapColors.Primary,
+                                    BootstrapColors.Info
+                                ]),
+                            new Border()
+                                .ZIndex(1)
+                                .StrokeShape(new RoundRectangle().CornerRadius(12))
+                                .Content(
+                                    new EntryControl()
+                                        .IsBorderless(true)
+                                        .CenterVertical()
+                                        .ZIndex(1)
+                                        .Placeholder("Enter some text")
+                                        .OnTextChanged(async (s, e) =>
+                                        {
+                                            if (!_Border2.IsLoading)
+                                                _Border2.IsLoading = true;
+                                            _Debouncer.Debounce(() =>
+                                            {
+                                                _Border2.IsLoading = false;
+                                            });
+                                        }))
+                                .Margin(8,6,8,6)
+                                .Padding(8,0,8,0)
+                                .Assign(out var _Border3)
                         ])
                 ]));
+        _Border3.SetDynamicResource(BackgroundColorProperty, nameof(BootstrapColors.PageColor));
     }
 
     protected override void OnAppearing()

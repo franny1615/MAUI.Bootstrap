@@ -64,6 +64,30 @@ public class RoundRectSpinnerControl : SKCanvasView
         get => (Color)GetValue(StaticBorderColorProperty);
         set => SetValue(StaticBorderColorProperty, value);
     }
+    
+    public static readonly BindableProperty BlurProperty = BindableProperty.Create(
+        nameof(Blur),
+        typeof(int),
+        typeof(RoundRectSpinnerControl),
+        0);
+
+    public int Blur
+    {
+        get => (int)GetValue(BlurProperty);
+        set => SetValue(BlurProperty, value);
+    }
+    
+    public static readonly BindableProperty InsetProperty = BindableProperty.Create(
+        nameof(Inset),
+        typeof(int),
+        typeof(RoundRectSpinnerControl),
+        8);
+
+    public int Inset
+    {
+        get => (int)GetValue(InsetProperty);
+        set => SetValue(InsetProperty, value);
+    }
     #endregion
     
     #region Private properties
@@ -104,31 +128,41 @@ public class RoundRectSpinnerControl : SKCanvasView
         canvas.Clear(SKColors.Transparent);  // Clear canvas
 
         #region DETERMINE INITIAL SIZE WITH PADDING 8
-        var width = e.Info.Width - 8;
-        var height = e.Info.Height - 8;
+        var width = e.Info.Width - Inset;
+        var height = e.Info.Height - Inset;
         var radius = CornerRadius;  // Corner radius for the rounded rectangle
         #endregion
-        
-        #region PAINT STATIC BORDER
-        // Define the paint for the rounded rectangle spinner segment
-        using var paint = new SKPaint();
-        paint.Style = SKPaintStyle.Stroke;
-        paint.Color = StaticBorderColor.ToSKColor();
-        paint.StrokeWidth = StrokeThickness;
-        paint.IsAntialias = true;
-        paint.StrokeCap = SKStrokeCap.Round; // Smooth, rounded segment ends
+
+        #region ADD INITIAL PATH
         // Define the rounded rectangle path
-        var rect = new SKRect(8, 8, width, height);
+        var rect = new SKRect(Inset, Inset, width, height);
         var path = new SKPath();
         path.AddRoundRect(rect, radius, radius);
-        // Draw the rotating arc segment along the rounded rectangle path
-        canvas.DrawPath(path, paint);
         #endregion
+        
+        if (_FirstLoopDone == 0)
+        {
+            #region PAINT STATIC BORDER
+            // Define the paint for the rounded rectangle spinner segment
+            using var paint = new SKPaint();
+            paint.Style = SKPaintStyle.Stroke;
+            paint.Color = StaticBorderColor.ToSKColor();
+            paint.StrokeWidth = StrokeThickness;
+            paint.IsAntialias = true;
+            paint.StrokeCap = SKStrokeCap.Round; // Smooth, rounded segment ends
+            if (Blur > 0)
+            {
+                paint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, Blur);
+            }
+            // Draw the rotating arc segment along the rounded rectangle path
+            canvas.DrawPath(path, paint);
+            #endregion
+        }
 
         if (!IsLoading)
             return;
 
-        #region MAP GRADIENTS
+        #region MAP GRADIENTS   
         // map the maui colors to SKColor
         var skColors = new SKColor[GradientColors.Count];
         for (var i = 0; i < GradientColors.Count; i++)
@@ -166,6 +200,10 @@ public class RoundRectSpinnerControl : SKCanvasView
             skColors, 
             null, 
             SKShaderTileMode.Clamp);
+        if (Blur > 0)
+        {
+            segmentPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, Blur);
+        }
 
         if (_FirstLoopDone == 0)
         {
@@ -191,10 +229,10 @@ public class RoundRectSpinnerControl : SKCanvasView
         base.OnPropertyChanged(propertyName);
         if (propertyName == IsLoadingProperty.PropertyName)
         {
+            _StartAngle = 360f;
+            _FirstLoopDone = 0;
             if (IsLoading)
             {
-                _StartAngle = 360f;
-                _FirstLoopDone = 0;
                 _Timer.Start();
             }
             else

@@ -532,6 +532,8 @@ var roundedRectSpinner = new RoundRectSpinnerControl()
     .StaticBorderColor(BootstrapColors.Secondary) // the default border color
     .CornerRadius(16)
     .StrokeThickness(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 8 : 4) // thickness of border
+    .Inset(8) // default is 8, defines the padding of rectangle that is drawn
+    .Blur(0) // default is 0, whe larger than zero will blur the filled path
     .CornerRadius(12) // border radius 
     .GradientColors([ // your gradient colors
         BootstrapColors.Primary,
