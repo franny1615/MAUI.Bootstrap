@@ -11,6 +11,10 @@ public class App : Application
         Resources.Add(new BootstrapStyles());
         // re-apply saved theme
         MAUIBootstrap.BootstrapColors.CurrentTheme = MAUIBootstrap.BootstrapColors.CurrentTheme;
-        MainPage = new NavigationPage(new ControlsPage());
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new NavigationPage(new ControlsPage()));
     }
 }
