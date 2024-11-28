@@ -7,7 +7,7 @@ One of the most useful libraries I have seen for C# only MAUI developers.
 
 [FmgLib.MauiMarkup GitHub](https://github.com/FmgLib/FmgLib.MauiMarkup)
 
-[FmgLib.MauiMarkup Docs](https://fmgyazilim.com/en/fmglibmauimarkup#fmglibmauimarkup-section)
+[FmgLib.MauiMarkup Docs](https://fmgyazilim.com/en/docs/fmglibmauimarkup/)
 
 ### Using MAUI.Bootstrap
 In your MauiProgram.cs file CreateMauiApp() method
