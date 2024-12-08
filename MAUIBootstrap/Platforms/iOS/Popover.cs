@@ -9,18 +9,18 @@ public class Popover : IPopover
 {
     public static IPopover Instance { get; } = new Popover();
     
-    public void Show(
+    public IPopoverInstance? Show(
         PopoverPlacement placement, 
         View parent, 
         View content,
         int dismissInSeconds = 0)
     {
-        if (parent.Handler?.MauiContext == null) { return; }
+        if (parent.Handler?.MauiContext == null) { return null; }
         var parentView = parent.ToPlatform(parent.Handler.MauiContext);
         var contentView = content.ToPlatform(parent.Handler.MauiContext);
         
         var currentVc = Platform.GetCurrentUIViewController();
-        if (currentVc == null || currentVc.View == null) { return; }
+        if (currentVc == null || currentVc.View == null) { return null; }
         
         var size = contentView.SystemLayoutSizeFittingSize(UIView.UILayoutFittingExpandedSize);
 
@@ -96,5 +96,27 @@ public class Popover : IPopover
                 });
             });
         }
+
+        return new PopoverInstance
+        {
+            Close = () =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    dismissView?.RemoveFromSuperview();
+                    contentView?.RemoveFromSuperview();
+                });
+            }  
+        };
+    }
+}
+
+public class PopoverInstance : IPopoverInstance
+{
+    public Action? Close { get; set; }
+    
+    public void ClosePopover()
+    {
+        Close?.Invoke();
     }
 }

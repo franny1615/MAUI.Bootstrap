@@ -15,6 +15,9 @@ public class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
+        MAUIBootstrap.DynamicConstants.Instance.RegularFont = Constants.RegularFont;
+        MAUIBootstrap.DynamicConstants.Instance.BoldFont = Constants.MediumFont;
+        
         return new Window(new NavigationPage(new ControlsPage()));
     }
 }

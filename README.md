@@ -12,7 +12,10 @@ One of the most useful libraries I have seen for C# only MAUI developers.
 ### Using MAUI.Bootstrap
 In your MauiProgram.cs file CreateMauiApp() method
 ```C#
+[DEPRECATED]
 builder.UseMauiBootstrap("REGULAR_FONT_FAMILY_NAME", "BOLD_FONT_FAMILY_NAME");
+
+builder.UserMauiBootstrap(); // use this one instead. 
 ```
 In your App.cs file constructor
 ```C#
@@ -20,6 +23,18 @@ using MAUIBootstrap.Resources.Styles;
 ..
 Resources.Add(new BootstrapColors());
 Resources.Add(new BootstrapStyles());
+
+protected override Window CreateWindow(IActivationState? activationState)
+{
+    ...
+    // set your custom fonts here. 
+    // where Constants.RegularFont is the string you set in MauiProgram.cs
+    // when registering the font initially.
+    MAUIBootstrap.DynamicConstants.Instance.RegularFont = Constants.RegularFont;
+    MAUIBootstrap.DynamicConstants.Instance.BoldFont = Constants.MediumFont;
+    ...
+    return new Window(new NavigationPage(new ControlsPage()));
+}
 ```
 The above will set up everything needed to use the class library.
 
@@ -495,7 +510,7 @@ using MAUIBootstrap.Platforms.iOS;
 #endif
 
 // somewhere inside an EventHandler
-Popover.Instance.Show(
+var currentPopover = Popover.Instance.Show(
     PopoverPlacement.Top, // .Bottom, .Left, .Right also available
     parentView,
     new Label() 
@@ -505,6 +520,12 @@ Popover.Instance.Show(
         .HorizontalTextAlignment(TextAlignment.Center)
         .Text("Top Popover"),
     0); // final parameter is an auto-dismiss number in seconds. Defaults to zero and doesn't auto dismiss
+
+// may close the popover from somewhere else like so
+// this is for when there is an event inside your popover
+// that is meant to close the popover after selection
+// i.e. selecting from a dropdown.
+currentPopover.ClosePopover();
 ```
 
 ### Spinner

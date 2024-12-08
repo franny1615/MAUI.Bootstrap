@@ -7,18 +7,15 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		string regularFontName = "OpenSansRegular";
-		string boldFontName = "OpensSansSemibold";
-
 		var builder = MauiApp.CreateBuilder();
 #pragma warning disable MCT001 // `.UseMauiCommunityToolkit()` Not Found on MauiAppBuilder
         builder
 			.UseMauiApp<App>()
-			.UseMauiBootstrap(regularFontName, boldFontName)
+			.UseMauiBootstrap()
 			.ConfigureFonts(fonts =>
 			{
-				fonts.AddFont("OpenSans-Regular.ttf", regularFontName);
-				fonts.AddFont("OpenSans-Semibold.ttf", boldFontName);
+				fonts.AddFont($"{Constants.RegularFont}.ttf", Constants.RegularFont);
+				fonts.AddFont($"{Constants.MediumFont}.ttf", Constants.MediumFont);
 			});
 #pragma warning restore MCT001 // `.UseMauiCommunityToolkit()` Not Found on MauiAppBuilder
 

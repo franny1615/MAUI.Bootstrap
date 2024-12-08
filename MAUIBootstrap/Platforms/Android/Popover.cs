@@ -10,13 +10,13 @@ public class Popover : IPopover
 {
     public static IPopover Instance { get; } = new Popover();
     
-    public void Show(
+    public IPopoverInstance? Show(
         PopoverPlacement placement,
         View parent, 
         View content,
         int dismissInSeconds = 0)
     {   
-        if (parent.Handler?.MauiContext == null) { return; }
+        if (parent.Handler?.MauiContext == null) { return null; }
         
         var contentView = content.ToPlatform(parent.Handler.MauiContext);
         
@@ -77,5 +77,20 @@ public class Popover : IPopover
                 });
             });
         }
+
+        return new PopoverInstance
+        {
+            Close = () => { MainThread.BeginInvokeOnMainThread(() => popupWindow?.Dismiss()); }
+        };
+    }
+}
+
+public class PopoverInstance : IPopoverInstance
+{
+    public Action? Close { get; set; }
+    
+    public void ClosePopover()
+    {
+        Close?.Invoke();
     }
 }

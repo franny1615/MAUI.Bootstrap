@@ -10,8 +10,10 @@ using MAUIBootstrap.Platforms.iOS;
 
 namespace SampleApp.Pages;
 
-public class PopoverDemoPage : ContentPage 
+public class PopoverDemoPage : ContentPage
 {
+    private IPopoverInstance? _CurrentPopover = null;
+    
     public PopoverDemoPage()
     {
         this
@@ -40,6 +42,9 @@ public class PopoverDemoPage : ContentPage
                         .Text("Top")
                         .OnClicked(TopPopover)
                         .Center(),
+                    new Label()
+                        .Text("Popovers will close programmatically after 2 second. May force close by tapping outside of content.")
+                        .Center()
                 ]));
     }
 
@@ -47,7 +52,7 @@ public class PopoverDemoPage : ContentPage
     {
         if (sender is not Button button) return;
         
-        Popover.Instance.Show(
+        _CurrentPopover = Popover.Instance.Show(
             PopoverPlacement.Top,
             button,
             new Label() 
@@ -56,13 +61,19 @@ public class PopoverDemoPage : ContentPage
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
                 .Text("Top Popover"));
+
+        Task.Run(async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            _CurrentPopover?.ClosePopover();
+        });
     }
 
     private void BottomPopover(object? sender, EventArgs e)
     {
         if (sender is not Button button) return;
         
-        Popover.Instance.Show(
+        _CurrentPopover = Popover.Instance.Show(
             PopoverPlacement.Bottom,
             button,
             new Label() 
@@ -71,13 +82,19 @@ public class PopoverDemoPage : ContentPage
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
                 .Text("Bottom Popover"));
+        
+        Task.Run(async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            _CurrentPopover?.ClosePopover();
+        });
     }
 
     private void LeftPopover(object? sender, EventArgs e)
     {
         if (sender is not Button button) return;
         
-        Popover.Instance.Show(
+        _CurrentPopover = Popover.Instance.Show(
             PopoverPlacement.Left,
             button,
             new Label() 
@@ -86,13 +103,19 @@ public class PopoverDemoPage : ContentPage
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
                 .Text("Left Popover"));
+        
+        Task.Run(async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            _CurrentPopover?.ClosePopover();
+        });
     }
 
     private void RightPopover(object? sender, EventArgs e)
     {
         if (sender is not Button button) return;
         
-        Popover.Instance.Show(
+        _CurrentPopover = Popover.Instance.Show(
             PopoverPlacement.Right,
             button,
             new Label() 
@@ -101,5 +124,11 @@ public class PopoverDemoPage : ContentPage
                 .TextColor(Colors.White)
                 .HorizontalTextAlignment(TextAlignment.Center)
                 .Text("Right Popover"));
+        
+        Task.Run(async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            _CurrentPopover?.ClosePopover();
+        });
     }
 }

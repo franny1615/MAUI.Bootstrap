@@ -328,6 +328,10 @@
         <Setter Property="UnselectedTabColor" Value="{DynamicResource Secondary}" />
         <Setter Property="SelectedTabColor" Value="{DynamicResource Primary}" />
     </Style>
+    
+    <Style TargetType="Button" ApplyToDerivedTypes="True">
+        <Setter Property="FontFamily" Value="{DynamicResource BoldFont}" />
+    </Style>
 
     <ControlTemplate x:Key="RadioButtonTemplate">
         <Grid ColumnDefinitions="Auto,*" Padding="8">

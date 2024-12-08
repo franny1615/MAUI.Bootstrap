@@ -11,9 +11,14 @@ public enum PopoverPlacement
 public interface IPopover
 {
     public static IPopover Instance { get; }
-    public void Show(
+    public IPopoverInstance? Show(
         PopoverPlacement placement, 
         View parent, 
         View content,
         int dismissInSeconds = 0);
+}
+
+public interface IPopoverInstance
+{
+    public void ClosePopover();
 }

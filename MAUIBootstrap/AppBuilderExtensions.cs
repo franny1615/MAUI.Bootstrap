@@ -18,13 +18,17 @@ namespace MAUIBootstrap;
 
 public static class AppBuilderExtensions
 {
+    [Obsolete("The regularFontName, boldFontName don't do anything. These need to be set App.CreateWindow(). See docs for more information.")]
     public static MauiAppBuilder UseMauiBootstrap(
         this MauiAppBuilder builder,
         string regularFontName,
         string boldFontName)
     {
-        DynamicConstants.Instance.RegularFont = regularFontName;
-        DynamicConstants.Instance.BoldFont = boldFontName;
+        return builder.UseMauiBootstrap();
+    }
+
+    public static MauiAppBuilder UseMauiBootstrap(this MauiAppBuilder builder)
+    {
         builder
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
