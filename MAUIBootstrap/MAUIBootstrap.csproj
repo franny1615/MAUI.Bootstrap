@@ -36,10 +36,11 @@
 		<PackageProjectUrl>https://github.com/franny1615/MAUI.Bootstrap</PackageProjectUrl>
 		<RepositoryURL>https://github.com/franny1615/MAUI.Bootstrap</RepositoryURL>
 		<Description>Basic library containing styles taken from web bootstrap components applied to .NET MAUI components.</Description>
+		<PackageReleaseNotes>Popover returns object that can be used to close current popover. Updates to font registration.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RequireLicenseAcceptance>False</RequireLicenseAcceptance>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>F.F</Authors>
 		<Company>F.F</Company>
 	</PropertyGroup>
