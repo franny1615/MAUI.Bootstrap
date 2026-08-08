@@ -33,7 +33,6 @@ public static class AppBuilderExtensions
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseMauiMarkupLocalization()
-            .UseMauiCompatibility()
             .UseSkiaSharp()
             .ConfigureFonts((fonts) =>
             {

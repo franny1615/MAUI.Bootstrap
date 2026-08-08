@@ -1,21 +1,16 @@
-using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Views;
 using FmgLib.MauiMarkup;
-using FmgLib.MauiMarkup.Core;
 using MAUIBootstrap;
 using MAUIBootstrap.Controls;
 using MAUIBootstrap.Extensions;
 using MAUIBootstrap.Popups;
 using MAUIBootstrap.Utilities;
-using Microsoft.Maui.Controls.Shapes;
 
 namespace SampleApp.Pages;
 
 public class DropdownControlDemoPage : ContentPage
 {
 	private readonly Debouncer _Debouncer = new();
-	private readonly ButtonControl _DropdownButton = new ButtonControl().Primary();
 	private readonly ButtonControl _DropdownButton2 = new ButtonControl().Primary();
 	private readonly Dropdown _GridDropdown = new Dropdown();
 	private readonly EntryControl _Entry = new EntryControl();
@@ -40,46 +35,6 @@ public class DropdownControlDemoPage : ContentPage
 	];
 	public DropdownControlDemoPage()
 	{
-		#region Community Toolkit Popup Version
-		_DropdownButton
-			.Content(new Grid()
-				.ColumnDefinitions(e => e.Star().Auto())
-				.Children([
-					new Label()
-						.Text("Dropdown w/ Popup")
-						.FontFamily(DynamicConstants.Instance.BoldFont)
-						.FontSize(16)
-						.Center()
-						.TextColor(Colors.White)
-						.Column(0),
-					new Button()
-						.Padding(0)
-						.Margin(0)
-						.MaterialIcon(MaterialIcon.Keyboard_arrow_down, 24, Colors.White)
-						.Column(1)
-						.OnClicked((s,e) => {
-							var popup = new Popup();
-							popup.CanBeDismissedByTappingOutsideOfPopup = true;
-							popup.Anchor = _DropdownButton;
-							popup.Color = Colors.Transparent;
-							popup.VerticalOptions = Microsoft.Maui.Primitives.LayoutAlignment.End;
-							popup.Content = new Dropdown() 
-								.DropdownItems(_DropdownItems)
-								.OnItemSelected((s,e) => {
-									if (e.SelectedItem != null)
-									{
-										Toast.Make(e.SelectedItem.TranslateKey).Show();
-									}
-								});
-							this.ShowPopup(popup);
-						}),
-				]))
-			.AlignLeft()
-			.OnTapped((s,e) => {
-				Toast.Make("Button Tap").Show();
-			});
-		#endregion
-
 		#region Grid Z-Index Based Dropdown Version
 		_GridDropdown
 			.AlignTop()
@@ -184,7 +139,6 @@ public class DropdownControlDemoPage : ContentPage
 				.RowDefinitions(e => e.Auto().Auto().Auto().Auto().Star())
 				.Padding(16)
 				.Children([
-					_DropdownButton.Row(0),
 					_DropdownButton2.Row(1),
 					_GridDropdown.Row(2).RowSpan(3),
 					new Border()
